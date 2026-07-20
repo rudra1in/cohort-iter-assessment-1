@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Answer Template — Transformer Model Selection</title>
+<title>Open Book Assessment - Gen AI & Cloud</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -42,6 +42,7 @@ body {
 }
 .chip.green  { border-color: #3a7a5a; color: #6ac89a; }
 .chip.blue   { border-color: #3a5a8a; color: #7aaae0; }
+.chip.red    { border-color: #7a3a3a; color: #ca6a6a; }
 #timer {
   font-size: 18px;
   font-weight: 500;
@@ -50,6 +51,7 @@ body {
   letter-spacing: 1px;
 }
 #timer.warn { color: #e87a4a; }
+#timer.critical { color: #e84a4a; }
 
 /* ── Progress ── */
 .progress-wrap {
@@ -73,6 +75,30 @@ body {
   padding: 28px 20px 80px;
 }
 
+/* ── Section Header ── */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 42px 0 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #d0d0c8;
+}
+.sec-head .icon {
+  font-size: 28px;
+}
+.sec-head h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a18;
+}
+.sec-head .meta {
+  margin-left: auto;
+  font-size: 12px;
+  color: #888882;
+  text-align: right;
+}
+
 /* ── Question Banner ── */
 .q-banner {
   background: #fff;
@@ -81,6 +107,15 @@ body {
   border-radius: 0 8px 8px 0;
   padding: 20px 24px;
   margin-bottom: 28px;
+}
+.q-banner.quiz {
+  border-left-color: #7a5fc0;
+}
+.q-banner.aws {
+  border-left-color: #ff9900;
+}
+.q-banner.lang {
+  border-left-color: #6ac89a;
 }
 .q-banner h2 {
   font-size: 15px;
@@ -100,104 +135,51 @@ body {
   border-radius: 6px;
   padding: 12px 16px;
   font-size: 13px;
-  color: #555550;
 }
 .q-banner .scenario strong { color: #1a1a18; }
 
-/* ── Section header ── */
-.sec-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 32px 0 14px;
-  padding-bottom: 10px;
-  border-bottom: 0.5px solid #e8e8e0;
-}
-.sec-badge {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 4px;
+/* ── Question number ── */
+.q-num {
+  display: inline-block;
+  background: #4a7fc0;
   color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-right: 8px;
 }
-.sec-badge.a { background: #2a5a9a; }
-.sec-badge.b { background: #5a2a9a; }
-.sec-badge.bonus { background: #1a6a4a; }
-.sec-head span { font-size: 13px; color: #888882; }
-.sec-marks { margin-left: auto; font-size: 12px; color: #4a7fc0; font-weight: 500; }
+.q-num.quiz { background: #7a5fc0; }
+.q-num.aws { background: #ff9900; }
+.q-num.lang { background: #6ac89a; }
 
-/* ── Answer block ── */
-.ans-block {
-  background: #fff;
-  border: 0.5px solid #e0e0d8;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  overflow: hidden;
-  transition: box-shadow 0.15s;
-}
-.ans-block:focus-within { box-shadow: 0 0 0 2px #4a7fc040; }
-
-.ans-head {
-  padding: 16px 20px 0;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-.part-num {
-  flex-shrink: 0;
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: #f0f0ea;
-  border: 0.5px solid #d8d8d0;
-  font-size: 11px; font-weight: 600;
-  display: flex; align-items: center; justify-content: center;
-  color: #666660; margin-top: 2px;
-}
-.part-num.done { background: #e4f2ec; border-color: #4a9a6a; color: #2a6a4a; }
-.ans-q { flex: 1; }
-.ans-q .qtext { font-size: 14px; color: #1a1a18; line-height: 1.65; margin-bottom: 6px; }
-.ans-q .qmeta { font-size: 12px; color: #999992; display: flex; gap: 10px; flex-wrap: wrap; }
-.qmeta .marks { color: #4a7fc0; font-weight: 500; }
-
-/* ── Hint box ── */
+/* ── Hint Box ── */
 .hint-toggle {
-  margin: 12px 20px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.hint-btn {
-  font-size: 12px;
-  padding: 5px 12px;
-  border: 0.5px solid #e0c860;
-  border-radius: 20px;
-  background: #fffbe8;
-  color: #7a5a00;
+  padding: 12px 20px 0;
   cursor: pointer;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: all 0.15s;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+  user-select: none;
 }
-.hint-btn:hover { background: #fff3c0; border-color: #c09a20; }
-.hint-box {
-  display: none;
-  margin: 10px 20px 0;
-  background: #fffce8;
-  border: 0.5px solid #e0c860;
-  border-radius: 6px;
-  padding: 12px 16px;
+.hint-toggle a {
+  color: #4a7fc0;
+  text-decoration: none;
   font-size: 13px;
-  color: #5a4a00;
-  line-height: 1.7;
-  animation: fadeIn 0.18s ease;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
-.hint-box ul { margin: 6px 0 0 18px; }
+.hint-toggle a:hover { text-decoration: underline; }
+.hint-box {
+  margin: 12px 20px 0;
+  padding: 12px 16px;
+  background: #fffae0;
+  border-left: 3px solid #d8c060;
+  border-radius: 4px;
+  font-size: 12.5px;
+  color: #5a4a10;
+  display: none;
+}
+.hint-box.open { display: block; }
 .hint-box li { margin-bottom: 4px; }
 .hint-box code {
   background: #fff3a0;
@@ -238,37 +220,38 @@ body {
 .answer-area textarea::placeholder { color: #b8b8b0; font-style: italic; font-size: 13px; }
 .charcount { font-size: 11px; color: #b0b0a8; text-align: right; margin-top: 4px; }
 
-/* ── Structure table in hints ── */
-.struct-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 8px;
-  font-size: 12px;
-}
-.struct-table th {
-  background: #f0e870;
-  color: #3a3000;
-  padding: 6px 8px;
-  text-align: left;
-  font-weight: 600;
-  border: 0.5px solid #d8c060;
-}
-.struct-table td {
-  padding: 6px 8px;
-  border: 0.5px solid #e0d070;
-  color: #4a3a00;
-  vertical-align: top;
-}
-.struct-table tr:nth-child(even) td { background: #fffae0; }
-
-/* ── Evaluation ── */
-.eval-row {
-  padding: 12px 20px 16px;
+/* ── Quiz Options ── */
+.quiz-options {
+  padding: 12px 20px;
   display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
 }
+.quiz-option {
+  padding: 12px 16px;
+  background: #fafaf8;
+  border: 0.5px solid #d8d8d0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+}
+.quiz-option input {
+  cursor: pointer;
+}
+.quiz-option:hover {
+  background: #f5f5f3;
+  border-color: #4a7fc0;
+}
+.quiz-option.selected {
+  background: #e3f2fd;
+  border-color: #4a7fc0;
+}
+
+/* ── Buttons ── */
 button {
   font-family: inherit;
   font-size: 13px;
@@ -284,700 +267,763 @@ button {
   touch-action: manipulation;
 }
 button:hover { background: #f0f0ea; border-color: #b8b8b0; }
-button.eval-btn {
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.eval-btn {
   background: #4a7fc0;
   color: #fff;
   border-color: #4a7fc0;
 }
-button.eval-btn:hover { background: #3a6ab0; }
-button.eval-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-button.submit-btn {
+.eval-btn:hover { background: #3a6ab0; }
+.eval-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.submit-btn {
   background: #1a1a18;
   color: #f5f5f3;
   border-color: #1a1a18;
   padding: 10px 28px;
   font-size: 14px;
-}
-button.submit-btn:hover { background: #2e2e2c; }
-
-.feedback {
-  display: none;
-  margin: 0 20px 16px;
-  padding: 12px 14px;
-  border-radius: 6px;
-  font-size: 13px;
-  line-height: 1.65;
-  animation: fadeIn 0.2s ease;
-}
-@keyframes fadeIn { from { opacity:0; transform: translateY(-4px); } to { opacity:1; transform: none; } }
-.feedback.good    { background: #eef8f2; border: 0.5px solid #4a9a6a; color: #1a5a3a; }
-.feedback.partial { background: #fef8ea; border: 0.5px solid #c09a3a; color: #5a3a00; }
-.feedback.poor    { background: #fdeeed; border: 0.5px solid #c06060; color: #7a1a1a; }
-.feedback .fb-score { font-weight: 500; margin-bottom: 5px; font-size: 13.5px; }
-.feedback .fb-tip {
-  margin-top: 8px; padding-top: 8px;
-  border-top: 0.5px solid currentColor;
-  opacity: 0.7; font-size: 12px;
+  font-weight: 500;
 }
 
-.loading {
-  display: inline-block;
-  width: 13px; height: 13px;
-  border: 2px solid transparent;
-  border-top-color: currentColor;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  vertical-align: middle;
-  margin-right: 5px;
+/* ── Page Break ── */
+.page-break {
+  page-break-after: always;
+  border-top: 3px solid #4a7fc0;
+  margin: 60px 0;
+  padding-top: 60px;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Model comparison scaffold ── */
-.model-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
-  margin: 10px 0;
-}
-.model-cell {
-  background: #fff8e0;
-  border: 0.5px solid #d8c860;
-  border-radius: 6px;
-  padding: 10px 12px;
-  font-size: 12px;
-  color: #4a3a00;
-}
-.model-cell strong { display: block; font-size: 11px; color: #8a6a00; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-
-/* ── Final submit ── */
-.final-section {
-  margin-top: 36px;
-  background: #fff;
-  border: 0.5px solid #e0e0d8;
-  border-radius: 10px;
-  padding: 24px 28px;
-}
-.name-row {
-  display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;
-}
-.name-row input {
-  flex: 1; min-width: 180px; max-width: 300px;
-  font-family: inherit; font-size: 13.5px;
-  padding: 8px 12px;
-  border: 0.5px solid #d8d8d0; border-radius: 6px;
-  background: #fafaf8; color: #1a1a18; outline: none;
-}
-.name-row input:focus { border-color: #4a7fc0; background: #fff; }
-.answered-stat { font-size: 13px; color: #888882; }
-.answered-stat strong { color: #1a1a18; }
-
-/* ── Results ── */
-#results {
-  display: none;
-  margin-top: 24px;
-  background: #fff;
-  border: 0.5px solid #e0e0d8;
-  border-radius: 10px;
-  padding: 28px;
-  animation: fadeIn 0.3s ease;
-}
-.grade-row { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
-.grade-circle {
-  width: 72px; height: 72px; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  font-size: 24px; font-weight: 500; flex-shrink: 0;
-}
-.grade-circle small { font-size: 10px; font-weight: 400; opacity: 0.7; }
-.gA { background: #eef8f2; color: #1a5a3a; }
-.gB { background: #e8f0fd; color: #1a4a8a; }
-.gC { background: #fef8ea; color: #5a3a00; }
-.gD { background: #fdeeed; color: #7a1a1a; }
-
-.breakdown-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px; margin: 16px 0;
-}
-.breakdown-item {
-  background: #fafaf8; border: 0.5px solid #e0e0d8; border-radius: 8px; padding: 12px 14px;
-}
-.breakdown-item .bi-label { font-size: 11px; color: #888882; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-.breakdown-item .bi-score { font-size: 18px; font-weight: 500; color: #1a1a18; }
-.debrief {
-  margin-top: 16px; padding: 14px 16px;
-  background: #fafaf8; border: 0.5px solid #e0e0d8; border-radius: 8px;
-  font-size: 13px; color: #555550; line-height: 1.75;
-}
-.debrief strong { color: #1a1a18; font-weight: 500; }
-
-/* ── Responsive ── */
+/* ── Mobile ── */
 @media (max-width: 640px) {
-  .topbar { padding: 14px 16px; }
-  .wrap { padding: 20px 12px 60px; }
   .q-banner { padding: 16px; }
-  .ans-head, .answer-area, .eval-row, .hint-toggle { padding-left: 14px; padding-right: 14px; }
-  .hint-box, .feedback { margin-left: 14px; margin-right: 14px; }
   #timer { font-size: 15px; }
-  .topbar-right { gap: 5px; }
-  .chip { font-size: 10px; padding: 2px 8px; }
-  .final-section { padding: 16px; }
+  .sec-head {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 32px 0 20px;
+  }
+  .sec-head .meta {
+    margin-left: 0;
+    text-align: left;
+  }
 }
-@media (max-width: 420px) {
-  .model-grid { grid-template-columns: 1fr; }
-  .topbar-left h1 { font-size: 14px; }
+
+@media print {
+  .topbar, .progress-wrap, button, .eval-row { display: none; }
+  .page-break { page-break-after: always; }
 }
 </style>
 </head>
 <body>
 
-<!-- Top bar -->
+<!-- Top Bar -->
 <div class="topbar">
   <div class="topbar-left">
-    <h1>Transformer Model Selection — Answer Template</h1>
-    <p>Open-book interview · Structured guidance with hints · AI evaluation</p>
+    <h1>🧠 Gen AI & Cloud - Open Book Assessment</h1>
+    <p>LLM Transformers · Prompt Engineering · LangChain · AWS (EC2, IAM)</p>
   </div>
   <div class="topbar-right">
-    <span class="chip green">Open Book</span>
-    <span class="chip blue">45–60 min</span>
-    <span id="timer">60:00</span>
+    <span class="chip blue">Two Sections</span>
+    <span class="chip green">Long Questions: 55 min</span>
+    <span class="chip red">Quiz: 15 min</span>
+    <div id="timer">00:00</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-fill" id="pfill"></div></div>
+<div class="progress-wrap">
+  <div class="progress-fill"></div>
+</div>
 
+<!-- Main Content -->
 <div class="wrap">
 
-  <!-- Question Banner -->
-  <div class="q-banner">
-    <h2>The Scenario</h2>
-    <p>You are an AI Engineer at a fast-growing company. Your team needs to select and deploy a <strong>decoder-only Transformer</strong> generative model for a production application that generates long-form technical content (documentation, reports, code explanations) with <strong>context windows up to 64k–128k tokens</strong>. The model must balance quality, cost, latency, and maintainability.</p>
-    <div class="scenario">
-      <strong>Model families in scope:</strong> Llama 3/4, Mistral, Gemma, Qwen, Phi-3/4, Grok, Claude, GPT variants — or any other real model you know. <br>
-      <strong>Your task:</strong> Recommend the most suitable model(s) and justify your choices across architecture, usability, and production readiness.
-    </div>
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1: LONG QUESTIONS (55 MINUTES) -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<div class="sec-head">
+  <div class="icon">📝</div>
+  <div>
+    <h1>Section 1: Long Answer Questions</h1>
+    <div class="meta">5 questions · 55 minutes · 300 words per answer</div>
   </div>
+</div>
 
-  <!-- ══ SECTION A ══ -->
-  <div class="sec-head">
-    <span class="sec-badge a">Part A</span>
-    <span>Model Selection Criteria</span>
-    <span class="sec-marks">~25 marks</span>
+<!-- Q1: Transformer Architecture -->
+<div class="q-banner">
+  <span class="q-num">Q1</span>
+  <h2>Transformer Architecture for LLMs</h2>
+  <p><strong>Scenario:</strong> You are deploying a decoder-only Transformer (like Llama 3, Mistral) for production long-form technical content generation with 64k–128k token context windows.</p>
+  <div class="scenario">
+    <strong>Task:</strong> Compare GQA (Grouped Query Attention) vs MQA (Multi-Query Attention) vs standard MHA (Multi-Head Attention). Explain why GQA is dominant in modern models for long contexts. What are the trade-offs in KV-cache memory, inference latency, and output quality?
   </div>
+</div>
 
-  <!-- A1 -->
-  <div class="ans-block">
-    <div class="ans-head">
-      <div class="part-num" id="pn-a1">A1</div>
-      <div class="ans-q">
-        <div class="qtext">What key <strong>Transformer architecture attributes</strong> would you evaluate when selecting a model for this use case? Address: attention mechanism, positional encoding, context length handling, and architecture modifications like GQA, SwiGLU, RMSNorm.</div>
-        <div class="qmeta"><span class="marks">8 marks</span><span>Architecture deep-dive</span></div>
-      </div>
-    </div>
-
-    <div class="hint-toggle">
-      <button class="hint-btn" onclick="toggleHint('h-a1')">💡 Show hint</button>
-    </div>
-    <div class="hint-box" id="h-a1">
-      <strong>What to cover — attribute by attribute:</strong>
-      <ul>
-        <li><code>Attention mechanism</code> — Standard MHA vs <strong>GQA</strong> (Grouped Query Attention) vs MQA. GQA reduces KV-cache memory at long contexts. Used in Llama 3, Mistral. Why does this matter at 64k+ tokens?</li>
-        <li><code>Positional encoding</code> — Compare <strong>RoPE</strong> (Rotary Position Embedding, scales well, most modern models), <strong>ALiBi</strong> (attention bias, extrapolates), <strong>YaRN</strong> (RoPE extension for context stretching). For 128k context, RoPE + YaRN is the dominant choice.</li>
-        <li><code>Context length handling</code> — KV-cache size grows linearly with sequence length. Sliding window attention (Mistral) vs full attention. FlashAttention-2/3 for memory efficiency.</li>
-        <li><code>Norm + activation</code> — <strong>RMSNorm</strong> (faster than LayerNorm, used in Llama/Mistral), <strong>SwiGLU</strong> activation (better than ReLU/GELU for quality, ~8% more compute). These affect per-token inference speed.</li>
-      </ul>
-      <div class="scaffold">
-        <strong>Suggested answer structure:</strong> 1) List each attribute as a sub-heading → 2) Define it briefly → 3) State why it matters for <em>this specific use case</em> (128k context, technical content) → 4) Name a model that exemplifies it.
-      </div>
-    </div>
-
-    <div class="answer-area">
-      <textarea id="ans-a1" placeholder="Discuss each attribute: attention mechanism (MHA/GQA/MQA), positional encoding (RoPE/ALiBi/YaRN), context handling (KV cache, FlashAttention), and architecture modifications (RMSNorm, SwiGLU). For each — explain the engineering tradeoff for 64k–128k context..." oninput="cc('a1')" onchange="markDone('a1')"></textarea>
-      <div class="charcount"><span id="cc-a1">0</span> chars</div>
-    </div>
-    <div class="eval-row">
-      <button class="eval-btn" onclick="evalAnswer('a1', 8)" id="eb-a1">Evaluate</button>
-    </div>
-    <div class="feedback" id="fb-a1"></div>
+<div class="hint-toggle">
+  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
+</div>
+<div class="hint-box">
+  <strong>Consider:</strong>
+  <ul>
+    <li><strong>KV-cache size:</strong> Grows O(seq_len) for each layer. At 128k tokens, this dominates memory.</li>
+    <li><strong>GQA (Llama 3, Mistral):</strong> Fewer KV heads (e.g., 8 heads for queries, 1 for KV). ~2× memory reduction vs MHA. Minimal quality loss.</li>
+    <li><strong>MQA (early experiments):</strong> Single KV head. Even more aggressive. Often hurts quality noticeably.</li>
+    <li><strong>Hardware efficiency:</strong> FlashAttention-2/3 favors standard MHA; GQA benefits more from lower memory pressure.</li>
+    <li><strong>Speculative decoding:</strong> Works better with fewer KV heads (faster draft model). This is a production win.</li>
+  </ul>
+  <div class="scaffold">
+    <strong>Structure your answer:</strong> Define each attention variant → Explain KV-cache memory math → Trade-off table (memory, latency, quality) → Recommend for long-context use cases.
   </div>
+</div>
 
-  <!-- A2 -->
-  <div class="ans-block">
-    <div class="ans-head">
-      <div class="part-num" id="pn-a2">A2</div>
-      <div class="ans-q">
-        <div class="qtext">Compare <strong>at least three</strong> different model families or variants in terms of: long-context capability and how they achieve it (RoPE, ALiBi, YaRN), and inference efficiency (memory usage, speed).</div>
-        <div class="qmeta"><span class="marks">8 marks</span><span>Comparative analysis</span></div>
-      </div>
-    </div>
+<div class="answer-area">
+  <textarea placeholder="Your answer (300+ words)..."></textarea>
+  <div class="charcount"><span>0</span> / 300 words</div>
+</div>
 
-    <div class="hint-toggle">
-      <button class="hint-btn" onclick="toggleHint('h-a2')">💡 Show hint</button>
-    </div>
-    <div class="hint-box" id="h-a2">
-      <strong>Scaffold — comparison table to fill in your answer:</strong>
-      <table class="struct-table" style="margin-top:10px">
-        <thead>
-          <tr><th>Model</th><th>Context method</th><th>Max context</th><th>Memory efficiency</th><th>Technical content fit</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Llama 3.1/3.3</strong></td><td>RoPE + GQA</td><td>128k</td><td>GQA reduces KV cache ~4x</td><td>Strong, instruction-tuned</td></tr>
-          <tr><td><strong>Mistral 7B / Mixtral</strong></td><td>Sliding Window + RoPE</td><td>32k native</td><td>Very low memory</td><td>Good at precise tasks</td></tr>
-          <tr><td><strong>Qwen 2.5 / 3</strong></td><td>RoPE + YaRN extension</td><td>128k+</td><td>Competitive</td><td>Excellent code/docs</td></tr>
-          <tr><td><strong>Gemma 2/3</strong></td><td>RoPE + alternating local/global</td><td>8k–128k</td><td>Efficient at small sizes</td><td>Good general + reasoning</td></tr>
-        </tbody>
-      </table>
-      <div class="scaffold" style="margin-top:10px">
-        <strong>What to argue in your answer:</strong> Don't just list — explain <em>why</em> each architectural choice makes sense or is a tradeoff for the 128k technical content use case. E.g. Mistral's sliding window saves memory but loses global attention at long range.
-      </div>
-    </div>
+---
 
-    <div class="answer-area">
-      <textarea id="ans-a2" placeholder="Pick ≥3 model families. For each: name the context extension method (RoPE/YaRN/ALiBi/SWA), state the max context, explain memory/KV-cache impact, and comment on suitability for technical long-form content. Use your own words — don't just list specs." oninput="cc('a2')" onchange="markDone('a2')"></textarea>
-      <div class="charcount"><span id="cc-a2">0</span> chars</div>
-    </div>
-    <div class="eval-row">
-      <button class="eval-btn" onclick="evalAnswer('a2', 8)" id="eb-a2">Evaluate</button>
-    </div>
-    <div class="feedback" id="fb-a2"></div>
+<!-- Q2: Prompt Engineering (Current Trends) -->
+<div class="q-banner">
+  <span class="q-num">Q2</span>
+  <h2>Prompt Engineering - Chain-of-Thought & CoT Variants</h2>
+  <p><strong>Scenario:</strong> Your team is building an AI-powered code review assistant. The system must analyze complex architectural decisions and provide structured feedback.</p>
+  <div class="scenario">
+    <strong>Task:</strong> Compare three modern prompt engineering techniques: (1) Standard Chain-of-Thought (CoT), (2) Tree-of-Thought (ToT) for branching reasoning, (3) Self-Consistency (SC) with majority voting. When would you use each? What are latency and cost implications for production?
   </div>
+</div>
 
-  <!-- A3 -->
-  <div class="ans-block">
-    <div class="ans-head">
-      <div class="part-num" id="pn-a3">A3</div>
-      <div class="ans-q">
-        <div class="qtext">Which model characteristics matter most for <strong>technical content generation</strong> (documentation, code explanations, reports) versus creative writing? Where do the priorities diverge?</div>
-        <div class="qmeta"><span class="marks">5 marks</span><span>Domain reasoning</span></div>
-      </div>
-    </div>
-
-    <div class="hint-toggle">
-      <button class="hint-btn" onclick="toggleHint('h-a3')">💡 Show hint</button>
-    </div>
-    <div class="hint-box" id="h-a3">
-      <strong>Key dimensions to compare:</strong>
-      <ul>
-        <li><code>Factual accuracy</code> — Technical content demands low hallucination. Creative writing tolerates (even rewards) invention. Hint: How does training data composition affect this?</li>
-        <li><code>Code understanding</code> — Models trained with large code corpora (Llama 3, Qwen, DeepSeek) handle code explanations better. Pure language models may generate plausible-sounding but wrong code.</li>
-        <li><code>Structural coherence over long output</code> — Technical docs must remain consistent across 10k+ tokens. Temperature must be lower. Models with stronger instruction following matter more here.</li>
-        <li><code>Diversity vs precision</code> — Creative writing benefits from high temperature, diverse sampling. Technical content: low temperature, top_p tighter, possibly beam search / greedy.</li>
-        <li><code>Format adherence</code> — Technical content often needs Markdown, structured headers, consistent code blocks. RLHF/instruction-tuned models handle this better.</li>
-      </ul>
-      <div class="scaffold">
-        <strong>Frame your answer as two columns:</strong> "For technical content, X matters because..." vs "For creative writing, Y matters because..." Then pick one model suited to each.
-      </div>
-    </div>
-
-    <div class="answer-area">
-      <textarea id="ans-a3" placeholder="Contrast the model properties that matter for technical vs creative content: factual grounding, code corpus training, temperature settings, hallucination tolerance, format adherence. Recommend a model for each domain with justification." oninput="cc('a3')" onchange="markDone('a3')"></textarea>
-      <div class="charcount"><span id="cc-a3">0</span> chars</div>
-    </div>
-    <div class="eval-row">
-      <button class="eval-btn" onclick="evalAnswer('a3', 5)" id="eb-a3">Evaluate</button>
-    </div>
-    <div class="feedback" id="fb-a3"></div>
+<div class="hint-toggle">
+  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
+</div>
+<div class="hint-box">
+  <strong>Consider:</strong>
+  <ul>
+    <li><strong>Standard CoT:</strong> "Let's think step-by-step" → single reasoning path. Works well for straightforward tasks. Latency: 1× baseline.</li>
+    <li><strong>Tree-of-Thought (ToT):</strong> Explore multiple reasoning branches, prune low-confidence paths, backtrack. Best for complex decisions. Latency: 3–5× (multiple parallel calls).</li>
+    <li><strong>Self-Consistency (SC):</strong> Run same prompt N times, aggregate results (voting/averaging). Reduces hallucination. Latency: N× baseline.</li>
+    <li><strong>Current trend:</strong> Combining CoT + SC (multiple sampling with voting) is emerging as sweet spot for reasoning tasks.</li>
+    <li><strong>Production use case:</strong> Code review is high-stakes (impact quality, time). Latency < 30s is typical requirement.</li>
+  </ul>
+  <div class="scaffold">
+    <strong>Structure your answer:</strong> Define each technique → Compare latency/cost/accuracy → Build a decision matrix → Recommend for code review use case.
   </div>
+</div>
 
-  <!-- ══ SECTION B ══ -->
-  <div class="sec-head">
-    <span class="sec-badge b">Part B</span>
-    <span>Usability &amp; Production Readiness</span>
-    <span class="sec-marks">~15 marks</span>
+<div class="answer-area">
+  <textarea placeholder="Your answer (300+ words)..."></textarea>
+  <div class="charcount"><span>0</span> / 300 words</div>
+</div>
+
+---
+
+<!-- Q3: Prompt Engineering (Structured Output & Few-Shot) - REPLACED -->
+<div class="q-banner">
+  <span class="q-num">Q3</span>
+  <h2>Prompt Engineering - Structured Output & Few-Shot Learning</h2>
+  <p><strong>Scenario:</strong> Your company is building a customer support AI that needs to extract entities from support tickets and return structured JSON for downstream processing. The system must work with varying ticket formats and quality.</p>
+  <div class="scenario">
+    <strong>Task:</strong> Explain how to use few-shot prompting with structured output to improve consistency. Compare: (1) Zero-shot prompting with schema specification, (2) Few-shot prompting with 2–3 examples, (3) Dynamic few-shot selection. How do you prevent hallucinations and enforce schema compliance? What's the trade-off between accuracy and inference cost?
   </div>
+</div>
 
-  <!-- B1 -->
-  <div class="ans-block">
-    <div class="ans-head">
-      <div class="part-num" id="pn-b1">B1</div>
-      <div class="ans-q">
-        <div class="qtext">How would you evaluate <strong>inference usability</strong> factors: quantization compatibility (INT4, INT8, FP8) and speculative decoding support? What are the tradeoffs for each?</div>
-        <div class="qmeta"><span class="marks">7 marks</span><span>Inference engineering</span></div>
-      </div>
-    </div>
-
-    <div class="hint-toggle">
-      <button class="hint-btn" onclick="toggleHint('h-b1')">💡 Show hint</button>
-    </div>
-    <div class="hint-box" id="h-b1">
-      <strong>Quantization — key facts to include:</strong>
-      <ul>
-        <li><code>INT8 (8-bit)</code> — ~2x memory reduction vs FP16, minimal quality loss on most tasks, widely supported (bitsandbytes, GPTQ, vLLM). Good default for production.</li>
-        <li><code>INT4 (4-bit)</code> — ~4x memory reduction. Quality drops noticeably on complex reasoning. Use GPTQ or GGUF (llama.cpp). Best for local/edge deployment or fast prototyping.</li>
-        <li><code>FP8</code> — Hardware-native (H100, upcoming GPUs). Minimal quality loss vs INT8. vLLM supports FP8. The right choice on modern infrastructure.</li>
-        <li>Trade-off pattern: <strong>Memory ↓ → Throughput ↑ → Quality ↓</strong></li>
-      </ul>
-      <strong style="display:block;margin-top:10px">Speculative decoding:</strong>
-      <ul>
-        <li>A small "draft" model generates candidate tokens; the large model verifies in parallel. <strong>Reduces latency 2–3x</strong> for greedy/low-temperature outputs (technical content fits this perfectly!).</li>
-        <li>Requires a compatible draft model — e.g. Llama-3-8B drafting for Llama-3-70B. Mistral supports this natively in vLLM.</li>
-        <li>Hint: Why does speculative decoding work especially well for documentation generation? (Hint: predictable, structured output)</li>
-      </ul>
-      <div class="scaffold">
-        <strong>Answer structure:</strong> 1) Explain each quantization level with its memory/quality tradeoff → 2) State which you'd choose for this production use case and why → 3) Explain speculative decoding mechanism → 4) Argue why it fits technical content generation.
-      </div>
-    </div>
-
-    <div class="answer-area">
-      <textarea id="ans-b1" placeholder="Explain INT4/INT8/FP8 quantization tradeoffs (memory, quality, tooling). Then explain how speculative decoding works, why it suits technical content generation, and what models/frameworks support it (vLLM, llama.cpp, etc.)." oninput="cc('b1')" onchange="markDone('b1')"></textarea>
-      <div class="charcount"><span id="cc-b1">0</span> chars</div>
-    </div>
-    <div class="eval-row">
-      <button class="eval-btn" onclick="evalAnswer('b1', 7)" id="eb-b1">Evaluate</button>
-    </div>
-    <div class="feedback" id="fb-b1"></div>
+<div class="hint-toggle">
+  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
+</div>
+<div class="hint-box">
+  <strong>Consider:</strong>
+  <ul>
+    <li><strong>Zero-shot with schema:</strong> "Return JSON with fields: {customer_id, issue_type, urgency}". Simple but error-prone. LLM may hallucinate fields or wrong format.</li>
+    <li><strong>Few-shot prompting:</strong> Include 2–3 real examples of input→output. Dramatically improves consistency. LLM learns pattern from examples. Adds ~500–1000 tokens per request.</li>
+    <li><strong>Dynamic few-shot:</strong> Select most similar examples from a pool based on current ticket. Better than fixed examples for diverse inputs. Requires retrieval (latency cost).</li>
+    <li><strong>Schema enforcement:</strong> Some models support constrained generation (e.g., Llama with GBNF grammar, OpenAI JSON mode). Prevents invalid JSON entirely.</li>
+    <li><strong>In-context learning:</strong> LLMs learn from examples without parameter updates. This is the foundation of prompt engineering at scale.</li>
+  </ul>
+  <div class="scaffold">
+    <strong>Structure your answer:</strong> Define each approach → Compare accuracy/cost/latency → Discuss hallucination mitigation → Recommend for customer support use case.
   </div>
+</div>
 
-  <!-- B2 -->
-  <div class="ans-block">
-    <div class="ans-head">
-      <div class="part-num" id="pn-b2">B2</div>
-      <div class="ans-q">
-        <div class="qtext">Explain the trade-offs between using a <strong>larger dense model</strong> (e.g. Llama-3-70B) vs a <strong>smaller Mixture-of-Experts (MoE)</strong> model (e.g. Mixtral 8x7B, Qwen-MoE) for this scenario.</div>
-        <div class="qmeta"><span class="marks">8 marks</span><span>Architecture tradeoff</span></div>
-      </div>
-    </div>
+<div class="answer-area">
+  <textarea placeholder="Your answer (300+ words)..."></textarea>
+  <div class="charcount"><span>0</span> / 300 words</div>
+</div>
 
-    <div class="hint-toggle">
-      <button class="hint-btn" onclick="toggleHint('h-b2')">💡 Show hint</button>
-    </div>
-    <div class="hint-box" id="h-b2">
-      <strong>MoE mechanics to explain:</strong>
-      <ul>
-        <li>MoE activates only a <strong>subset of parameters</strong> per token (e.g. Mixtral 8x7B has 47B total params but activates only ~13B per token → cheaper per-token compute, expensive memory)</li>
-        <li><code>Dense model advantage</code>: simpler deployment, all parameters always active, predictable memory, better support for quantization and speculative decoding</li>
-        <li><code>MoE advantage</code>: higher parameter count at same compute budget → often better quality at equivalent FLOPS. Routing diversity may help technical content (different experts for code vs prose)</li>
-        <li><code>MoE problem for this use case</code>: All experts must stay in GPU memory. Mixtral 8x7B needs ~90GB for FP16 → 2×A100s. Vs Llama-3-70B at ~140GB (4-bit: ~35GB). Memory pressure is higher for MoE at long contexts (KV-cache also grows).</li>
-      </ul>
-      <div class="scaffold">
-        <strong>Decision framework to argue:</strong><br>
-        If you have <strong>multi-GPU setup with high memory</strong> → MoE can give better quality/cost ratio.<br>
-        If you have <strong>single A100 or inference budget constraint</strong> → Dense + INT8/INT4 is more predictable.<br>
-        For <strong>128k technical content at scale</strong> → Dense model with GQA + FlashAttention may be more operationally stable.
-      </div>
-    </div>
+---
 
-    <div class="answer-area">
-      <textarea id="ans-b2" placeholder="Explain how MoE works (routing, activated params vs total params). Compare Dense vs MoE on: memory footprint (especially with 128k KV-cache), per-token compute cost, deployment complexity, quantization support, and suitability for this production scenario. Make a recommendation." oninput="cc('b2')" onchange="markDone('b2')"></textarea>
-      <div class="charcount"><span id="cc-b2">0</span> chars</div>
-    </div>
-    <div class="eval-row">
-      <button class="eval-btn" onclick="evalAnswer('b2', 8)" id="eb-b2">Evaluate</button>
-    </div>
-    <div class="feedback" id="fb-b2"></div>
+<!-- Q4: LangChain Architecture -->
+<div class="q-banner">
+  <span class="q-num">Q4</span>
+  <h2>LangChain: Document Loaders, Text Splitters & Runnables</h2>
+  <p><strong>Scenario:</strong> Your team is building a system that processes diverse documents (PDFs, HTML, CSVs) and needs to create embeddings for a vector database.</p>
+  <div class="scenario">
+    <strong>Task:</strong> Explain LangChain's Document Loader + Text Splitter pipeline. Compare recursive vs sliding-window chunking. How does chunk size/overlap affect RAG retrieval quality? Show a code pattern using Runnable and RunnablePassthrough.
   </div>
+</div>
 
-  <!-- ══ BONUS ══ -->
-  <div class="sec-head">
-    <span class="sec-badge bonus">Bonus</span>
-    <span>Open-source on-prem vs hosted frontier API</span>
-    <span class="sec-marks">+5 marks</span>
+<div class="hint-toggle">
+  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
+</div>
+<div class="hint-box">
+  <strong>Consider:</strong>
+  <ul>
+    <li><strong>Document Loaders:</strong> PDF/markdown/web loaders extract text. LangChain abstracts format differences.</li>
+    <li><strong>Recursive chunking:</strong> Split on [\n\n, \n, . , " "] hierarchy. Preserves logical structure. Better for documents with clear hierarchy.</li>
+    <li><strong>Sliding window:</strong> Fixed chunk size with overlap (e.g., 200 tokens, 50 overlap). Simpler. Good for dense text without structure.</li>
+    <li><strong>Chunk size impact:</strong> Too small (50 tokens) = fragmented context, low quality retrieval. Too large (2000 tokens) = LLM context bloat, slower inference. Sweet spot: 300–800 tokens.</li>
+    <li><strong>Runnable:</strong> LangChain's composable unit. RunnablePassthrough passes input through unchanged. Allows piping: loader | splitter | embedder.</li>
+  </ul>
+  <div class="scaffold">
+    <strong>Structure your answer:</strong> Explain loaders & splitters → Compare chunking strategies → Show code pattern → Discuss optimal chunk sizing for your use case.
   </div>
+</div>
 
-  <!-- Bonus -->
-  <div class="ans-block">
-    <div class="ans-head">
-      <div class="part-num" id="pn-bx">★</div>
-      <div class="ans-q">
-        <div class="qtext">If cost becomes a major constraint, how would you decide between: running a high-quality <strong>open-source model locally/on-prem</strong> vs using a <strong>hosted frontier model via API</strong> (Claude, GPT-4, Gemini)?</div>
-        <div class="qmeta"><span class="marks">+5 bonus marks</span><span>Business + engineering reasoning</span></div>
-      </div>
-    </div>
+<div class="answer-area">
+  <textarea placeholder="Your answer (300+ words)..."></textarea>
+  <div class="charcount"><span>0</span> / 300 words</div>
+</div>
 
-    <div class="hint-toggle">
-      <button class="hint-btn" onclick="toggleHint('h-bx')">💡 Show hint</button>
-    </div>
-    <div class="hint-box" id="h-bx">
-      <strong>Decision factors to structure around:</strong>
-      <ul>
-        <li><code>Volume economics</code> — At low volume (< 1M tokens/day): API is cheaper (no GPU capex). At high volume (>10M tokens/day): on-prem quickly wins on per-token cost. Build a break-even model.</li>
-        <li><code>Data privacy / compliance</code> — If generating internal technical docs with proprietary code → data leaving to an API is a risk. On-prem required for regulated industries (banking, health, defence).</li>
-        <li><code>Quality ceiling</code> — GPT-4o, Claude Opus still outperform most open-source on complex multi-step reasoning. If output quality directly impacts revenue/safety → the quality premium may justify API cost.</li>
-        <li><code>Latency + SLA</code> — API latency is unpredictable under load. On-prem gives deterministic SLA. For batch documentation generation, API is fine. For real-time code assist, on-prem wins.</li>
-        <li><code>Operational complexity</code> — On-prem = model updates, infra maintenance, GPU procurement, vLLM/TGI ops team. API = just a key rotation. Factor this into TCO.</li>
-      </ul>
-      <div class="scaffold">
-        <strong>Frame as a decision matrix:</strong> Show 4–5 factors, rate each option, then give a concrete recommendation tied to the scenario (technical content, 128k context, mid-sized company).
-      </div>
-    </div>
+---
 
-    <div class="answer-area">
-      <textarea id="ans-bx" placeholder="Build a decision framework: token volume economics (break-even analysis), data privacy constraints, quality ceiling, latency SLA requirements, and total cost of ownership (GPU capex vs API opex). Give a concrete recommendation for this scenario." oninput="cc('bx')" onchange="markDone('bx')"></textarea>
-      <div class="charcount"><span id="cc-bx">0</span> chars</div>
-    </div>
-    <div class="eval-row">
-      <button class="eval-btn" onclick="evalAnswer('bx', 5)" id="eb-bx">Evaluate</button>
-    </div>
-    <div class="feedback" id="fb-bx"></div>
+<!-- Q5: AWS EC2 Deployment -->
+<div class="q-banner">
+  <span class="q-num">Q5</span>
+  <h2>AWS EC2 & IAM for LLM Deployment</h2>
+  <p><strong>Scenario:</strong> You're deploying a Llama 3 70B model (4-bit quantized) on AWS EC2 for inference. The server needs to access S3 for model weights, call SageMaker for batch jobs, and stream logs to CloudWatch.</p>
+  <div class="scenario">
+    <strong>Task:</strong> Design an EC2 instance setup (instance type, storage, networking). Define an IAM role with least-privilege permissions for S3, SageMaker, and CloudWatch. Explain how you'd use EC2 Security Groups + VPC to isolate the inference server. What are the security vs. convenience trade-offs?
   </div>
+</div>
 
-  <!-- ── Submit ── -->
-  <div class="final-section">
-    <div class="name-row">
-      <input type="text" id="sname" placeholder="Your name (optional)">
-      <span class="answered-stat">Parts answered: <strong id="acount">0</strong> / 5</span>
-    </div>
-    <button class="submit-btn" onclick="submitAll()">Submit &amp; see overall feedback</button>
+<div class="hint-toggle">
+  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
+</div>
+<div class="hint-box">
+  <strong>Consider:</strong>
+  <ul>
+    <li><strong>Instance type:</strong> GPU compute (g4dn, g5 for NVIDIA/AMD GPUs). Llama 70B (4-bit) ≈ 35GB → need ≥ 80GB GPU memory → g5.24xlarge or p4 instances.</li>
+    <li><strong>Storage:</strong> EBS gp3 for OS/app (50GB), separate high-throughput EBS for model cache, or local NVMe instance store (faster but ephemeral).</li>
+    <li><strong>IAM role policy:</strong> Attach role to EC2 instance. Policies: S3 (GetObject on model bucket), SageMaker (InvokeEndpoint, Describe*), CloudWatch (PutMetricData, Logs:CreateLogGroup/CreateLogStream/PutLogEvents).</li>
+    <li><strong>Security Group:</strong> Inbound: SSH (22, restricted to admin IPs), API (8000, restricted to app servers only). Egress: S3, SageMaker, CloudWatch (HTTPS 443).</li>
+    <li><strong>Least privilege:</strong> Avoid wildcards (*). Specific S3 bucket ARN, specific SageMaker endpoint ARN. Document why each permission exists.</li>
+  </ul>
+  <div class="scaffold">
+    <strong>Structure your answer:</strong> Instance sizing → Storage design → IAM policy JSON → Security Group rules → Justify trade-offs.
   </div>
+</div>
 
-  <!-- Results -->
-  <div id="results"></div>
+<div class="answer-area">
+  <textarea placeholder="Your answer (300+ words)..."></textarea>
+  <div class="charcount"><span>0</span> / 300 words</div>
+</div>
 
-</div><!-- /wrap -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- PAGE BREAK -->
+<!-- ════════════════════════════════════════════════════════════════ -->
 
+<div class="page-break"></div>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2: QUIZ (15 MINUTES) -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<div class="sec-head">
+  <div class="icon">🎯</div>
+  <div>
+    <h1>Section 2: Quick Quiz</h1>
+    <div class="meta">15 questions · 15 minutes · Multiple choice & short answer</div>
+  </div>
+</div>
+
+<!-- LangChain Questions (Q1-Q10) -->
+
+<!-- LangChain Q1 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q1</span>
+  <h2>LangChain Document Loaders</h2>
+  <p>Which LangChain document loader would you use to extract text from a password-protected PDF and handle both image-based and text-based pages?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q1" value="a">
+    <span>PyPDFLoader (handles all PDF types natively)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q1" value="b">
+    <span>PDFPlumberLoader with Tesseract OCR for scanned pages</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q1" value="c">
+    <span>PDFMinerLoader (deprecated, avoid)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q1" value="d">
+    <span>WebBaseLoader (for URLs only)</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q2 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q2</span>
+  <h2>RecursiveCharacterTextSplitter Best Practice</h2>
+  <p>You're chunking markdown documents with a chunk size of 1000 characters and overlap of 200. What is the primary advantage of recursive splitting over fixed chunking?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q2" value="a">
+    <span>Faster processing time due to fewer chunks</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q2" value="b">
+    <span>Preserves logical structure by respecting document hierarchy (paragraphs, sentences, words)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q2" value="c">
+    <span>Automatically detects the optimal chunk size</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q2" value="d">
+    <span>Removes duplicate content between chunks</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q3 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q3</span>
+  <h2>LangChain Runnable & RunnablePassthrough</h2>
+  <p>In a LangChain pipeline: <code>retriever | RunnablePassthrough() | prompt | llm</code>, what does RunnablePassthrough() do?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q3" value="a">
+    <span>Skips the prompt step entirely</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q3" value="b">
+    <span>Passes the input through unchanged, allowing parallel composition with other runnables</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q3" value="c">
+    <span>Validates input and throws errors if format is wrong</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q3" value="d">
+    <span>Caches results to speed up subsequent invocations</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q4 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q4</span>
+  <h2>LangChain ConversationBufferMemory</h2>
+  <p>What is the main limitation of ConversationBufferMemory in a production chatbot handling thousands of users?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q4" value="a">
+    <span>It doesn't support token counting</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q4" value="b">
+    <span>All conversation history is retained indefinitely, leading to unbounded context length and high API costs</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q4" value="c">
+    <span>It only works with OpenAI models</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q4" value="d">
+    <span>It stores memory in environment variables</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q5 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q5</span>
+  <h2>LangChain ConversationSummaryMemory</h2>
+  <p>True/False: ConversationSummaryMemory uses an LLM to periodically condense conversation history into a summary, reducing token usage while preserving context.</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q5" value="a">
+    <span>True</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q5" value="b">
+    <span>False</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q6 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q6</span>
+  <h2>Runnable.invoke() vs Runnable.stream()</h2>
+  <p>When would you use <code>runnable.stream()</code> instead of <code>runnable.invoke()</code> in a LangChain pipeline?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q6" value="a">
+    <span>For real-time token-by-token output to a user interface (progressive rendering)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q6" value="b">
+    <span>Only when using free models</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q6" value="c">
+    <span>Stream doesn't exist; use invoke for all cases</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q6" value="d">
+    <span>When you want to batch multiple requests</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q7 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q7</span>
+  <h2>LangChain Text Splitter Overlap</h2>
+  <p>For a text splitter with chunk_size=500 and chunk_overlap=100, what is the intended purpose of the 100-token overlap?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q7" value="a">
+    <span>Reduce total number of chunks (avoid overlap)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q7" value="b">
+    <span>Preserve context at chunk boundaries so semantic meaning isn't lost between splits</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q7" value="c">
+    <span>Ensure no duplicate content exists</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q7" value="d">
+    <span>Speed up vector similarity search</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q8 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q8</span>
+  <h2>LangChain Memory: EntityMemory</h2>
+  <p>What is EntityMemory used for in LangChain conversations?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q8" value="a">
+    <span>Extracting and maintaining key entities (names, places, dates) mentioned in conversation</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q8" value="b">
+    <span>Encrypting sensitive data</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q8" value="c">
+    <span>Deleting old messages automatically</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q8" value="d">
+    <span>Connecting to external databases</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q9 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q9</span>
+  <h2>LangChain DocumentLoader with Metadata</h2>
+  <p>When loading documents into LangChain, what is the advantage of preserving metadata (source, page number, timestamp)?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q9" value="a">
+    <span>No advantage; metadata is just extra clutter</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q9" value="b">
+    <span>Enables traceability, filtering, and improving context quality in retrieval (users can verify sources)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q9" value="c">
+    <span>Automatically removes duplicates</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q9" value="d">
+    <span>Speeds up vector embeddings</span>
+  </label>
+</div>
+
+---
+
+<!-- LangChain Q10 -->
+<div class="q-banner quiz lang">
+  <span class="q-num quiz">Q10</span>
+  <h2>LangChain Runnable Composition</h2>
+  <p>In the pattern <code>(runnable1 | runnable2).invoke(input)</code>, what does the pipe operator | mean?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q10" value="a">
+    <span>Parallel execution of both runnables</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q10" value="b">
+    <span>Sequential composition: output of runnable1 becomes input to runnable2</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q10" value="c">
+    <span>Conditional branching based on input type</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q10" value="d">
+    <span>Creates a loop that repeats until convergence</span>
+  </label>
+</div>
+
+---
+
+<!-- AWS Questions (Q11-Q15) -->
+
+<!-- AWS Q1 -->
+<div class="q-banner quiz aws">
+  <span class="q-num aws">Q11</span>
+  <h2>AWS EC2 Instance Types for GPU Workloads</h2>
+  <p>For deploying a Llama 3 70B model (4-bit, ~35GB GPU memory), which EC2 instance family is most cost-effective?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q11" value="a">
+    <span>t3 instances (burstable CPU, no GPU)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q11" value="c">
+    <span>g5 (NVIDIA A10G, 24GB per GPU; or larger variants with multiple GPUs)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q11" value="d">
+    <span>i3 (high I/O, no GPU)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q11" value="b">
+    <span>g4dn (NVIDIA T4 GPUs, 16GB memory each)</span>
+  </label>
+</div>
+
+---
+
+<!-- AWS Q2 -->
+<div class="q-banner quiz aws">
+  <span class="q-num aws">Q12</span>
+  <h2>AWS IAM Least Privilege</h2>
+  <p>True/False: An EC2 instance should have an IAM role with full S3 access (*:*) for simplicity, rather than specific bucket/object ARNs.</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q12" value="a">
+    <span>True (simplicity is more important than security)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q12" value="b">
+    <span>False (violates least privilege; specific ARNs reduce blast radius if instance is compromised)</span>
+  </label>
+</div>
+
+---
+
+<!-- AWS Q3 -->
+<div class="q-banner quiz aws">
+  <span class="q-num aws">Q13</span>
+  <h2>AWS Security Groups vs NACLs</h2>
+  <p>An EC2 instance running an LLM inference service should accept inbound traffic on port 8000 (API) from only 10.0.1.0/24 (application subnet). Which AWS security control is most direct for this?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q13" value="a">
+    <span>EC2 Security Group with inbound rule: Type=Custom TCP, Port=8000, Source=10.0.1.0/24</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q13" value="b">
+    <span>NACL (Network ACL) only, Security Groups are deprecated</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q13" value="c">
+    <span>Open port 8000 to 0.0.0.0/0 and rely on OS firewall</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q13" value="d">
+    <span>Restrict at the application layer only (no network controls)</span>
+  </label>
+</div>
+
+---
+
+<!-- AWS Q4 -->
+<div class="q-banner quiz aws">
+  <span class="q-num aws">Q14</span>
+  <h2>AWS IAM Policy Structure</h2>
+  <p>An IAM policy for an LLM service needs to read objects from S3 bucket "ml-models" and write CloudWatch logs. Which is the correct Effect/Action combination?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q14" value="a">
+    <span>Effect: Deny, Action: ["s3:*", "logs:*"]</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q14" value="b">
+    <span>Effect: Allow, Action: ["s3:GetObject", "logs:CreateLogStream", "logs:PutLogEvents"], Resource: [ARN of bucket & log group]</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q14" value="c">
+    <span>Effect: Allow, Action: "*", Resource: "*" (full permissions)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q14" value="d">
+    <span>No policy needed; IAM is optional</span>
+  </label>
+</div>
+
+---
+
+<!-- AWS Q5 -->
+<div class="q-banner quiz aws">
+  <span class="q-num aws">Q15</span>
+  <h2>AWS EC2 EBS vs Instance Store</h2>
+  <p>For persistent model weights and temporary inference caches, which storage option should be used?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option">
+    <input type="radio" name="q15" value="a">
+    <span>EBS gp3 for both (persistent, survives instance stop/reboot)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q15" value="b">
+    <span>Instance Store NVMe for both (fastest, but ephemeral; lost on stop)</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q15" value="c">
+    <span>EBS gp3 for models, local NVMe instance store for inference cache</span>
+  </label>
+  <label class="quiz-option">
+    <input type="radio" name="q15" value="d">
+    <span>Always use S3 for all storage (slowest but simplest)</span>
+  </label>
+</div>
+
+---
+
+<!-- Submit Button -->
+<div style="text-align: center; margin-top: 60px; padding-bottom: 60px;">
+  <button class="submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+  <p style="font-size: 12px; color: #888882; margin-top: 16px;">All answers are saved automatically. You can return to this page anytime during the exam window.</p>
+</div>
+
+</div>
+
+<!-- JavaScript -->
 <script>
-// ── Timer ──
-let secs = 3600, timerRef;
-function startTimer() {
-  timerRef = setInterval(() => {
-    secs--;
-    const m = Math.floor(secs / 60), s = secs % 60;
-    const el = document.getElementById('timer');
-    el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-    if (secs <= 300) el.classList.add('warn');
-    if (secs <= 0) { clearInterval(timerRef); submitAll(); }
-  }, 1000);
-}
-startTimer();
+// Timer
+let startTime = Date.now();
+let totalSeconds = 70 * 60; // 70 min total (55 long + 15 quiz)
+let timerInterval = setInterval(() => {
+  let elapsed = Math.floor((Date.now() - startTime) / 1000);
+  let remaining = totalSeconds - elapsed;
+  if (remaining <= 0) {
+    clearInterval(timerInterval);
+    document.getElementById('timer').textContent = '00:00';
+    alert('⏰ Time\'s up! Your assessment has been auto-submitted.');
+    submitAssessment();
+  } else {
+    let mins = Math.floor(remaining / 60);
+    let secs = remaining % 60;
+    document.getElementById('timer').textContent = 
+      String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    
+    // Warning color at 5 min remaining
+    if (remaining <= 300) {
+      document.getElementById('timer').classList.add('warn');
+    }
+    if (remaining <= 60) {
+      document.getElementById('timer').classList.add('critical');
+    }
+  }
+}, 1000);
 
-// ── Hint toggle ──
-function toggleHint(id) {
-  const box = document.getElementById(id);
-  const btn = box.previousElementSibling.querySelector('.hint-btn');
-  const open = box.style.display === 'block';
-  box.style.display = open ? 'none' : 'block';
-  btn.textContent = open ? '💡 Show hint' : '🙈 Hide hint';
-}
-
-// ── Char count ──
-function cc(id) {
-  const ta = document.getElementById('ans-' + id);
-  const sp = document.getElementById('cc-' + id);
-  if (ta && sp) sp.textContent = ta.value.length;
-}
-
-// ── Mark done ──
-const done = {};
-let doneCount = 0;
-function markDone(id) {
-  if (!done[id]) {
-    done[id] = true; doneCount++;
-    const el = document.getElementById('pn-' + id);
-    if (el) el.classList.add('done');
-    document.getElementById('acount').textContent = doneCount;
-    document.getElementById('pfill').style.width = (doneCount / 5 * 100) + '%';
+// Hint toggle
+function toggleHint(elem) {
+  let hintBox = elem.closest('.hint-toggle').nextElementSibling;
+  if (hintBox.classList.contains('open')) {
+    hintBox.classList.remove('open');
+    elem.textContent = '💡 Show Hint';
+  } else {
+    hintBox.classList.add('open');
+    elem.textContent = '💡 Hide Hint';
   }
 }
 
-// ── Rubrics ──
-const RUBRICS = {
-  a1: {
-    marks: 8,
-    rubric: `Part A1 — Transformer architecture attributes for 128k-context technical content model selection (8 marks):
-
-Attention mechanism (2 marks): Student should distinguish MHA (all queries/keys/values separate) from GQA (grouped queries share key-value heads, drastically reducing KV-cache memory) and MQA (extreme single KV head). For 128k context, GQA is critical — KV cache grows O(n) with sequence length, so reducing KV heads saves proportionally. Models like Llama 3, Mistral 7B use GQA. Award marks for explaining the mechanism AND the practical benefit at long context.
-
-Positional encoding (2 marks): RoPE (Rotary Position Embedding) — rotates query/key pairs by position angle, relative positions preserved, extrapolates well. Used in Llama, Mistral, Qwen. YaRN extends RoPE to longer contexts via interpolation. ALiBi adds linear bias to attention scores without learned embeddings — simpler but less adopted in latest models. For 128k, RoPE + YaRN is the dominant approach. Award marks for explaining at least 2 methods and connecting to context length extension.
-
-Architecture modifications (2 marks): RMSNorm (Root Mean Square Norm) — faster than LayerNorm, no mean subtraction, used in Llama/Mistral/Qwen. SwiGLU activation — gated linear unit variant, better quality than ReLU/GELU at cost of ~8% more parameters/compute. FlashAttention 2/3 — memory-efficient attention via tiling (O(n) memory instead of O(n²)), essential for 128k context. Award marks for correctly explaining at least 2 with their engineering impact.
-
-Connection to use case (2 marks): Student should argue why each attribute matters SPECIFICALLY for 128k technical content — not just define it. E.g. GQA matters because 128k KV-cache would be prohibitively large without it; RoPE+YaRN matters because we need genuine long-range attention for document coherence; FlashAttention matters because training/inference at 128k without it OOMs on most GPU configs.`
-  },
-  a2: {
-    marks: 8,
-    rubric: `Part A2 — Comparative model analysis: context methods, memory, inference efficiency (8 marks):
-
-Student must compare at least 3 model families with meaningful technical depth (not just listing specs).
-
-Depth of comparison (4 marks): For each model, student should state: (a) the positional encoding / context extension method and HOW it works, not just its name; (b) max context length and whether it's native or extended; (c) memory implications (KV-cache, parameter count, quantization options); (d) inference efficiency (throughput, batch size capability). Award up to 4 marks for technical accuracy and depth across the 3+ models chosen.
-
-Quality of reasoning (2 marks): Student should explain WHY one approach beats another, not just state specs. E.g. "Mistral's sliding window attention saves memory at the cost of losing attention to tokens >4096 positions ago — fine for many tasks but potentially problematic for documents needing coherence across full 128k." This reasoning quality earns marks.
-
-Technical content fit (2 marks): Student should connect each model's characteristics to the actual use case. Models with strong code/doc training data (Qwen, Llama-3 70B Instruct, DeepSeek-Coder), strong instruction following (Llama-3, Mistral Instruct), and verified long-context benchmarks (RULER, LongBench) are more relevant than general benchmarks alone.`
-  },
-  a3: {
-    marks: 5,
-    rubric: `Part A3 — Technical content vs creative writing model characteristics (5 marks):
-
-Factual accuracy and grounding (1 mark): Technical content requires low hallucination rate and factual consistency. Models with strong code corpus training (Qwen 2.5 Coder, Llama 3.1, DeepSeek) perform better. Creative writing tolerates confabulation.
-
-Structural coherence (1 mark): Technical docs need consistent formatting, accurate cross-references, coherent structure over long outputs. Instruction-tuned models with strong format adherence (system-prompt compliance, Markdown output) matter more than raw perplexity. Temperature management is critical — lower temp for technical content.
-
-Domain-specific training (1 mark): Technical content benefits from models trained on code, papers, documentation (e.g. Qwen 2.5, Llama 3, Phi-4 for reasoning). Creative writing benefits from diverse literary corpora.
-
-Sampling strategy difference (1 mark): Technical content: lower temperature (0.1–0.4), tighter top_p (0.9), possibly greedy for code blocks. Creative writing: higher temperature (0.7–1.0), higher top_p. Student should articulate this as a deployment consideration, not just a parameter choice.
-
-Concrete model recommendations (1 mark): Student makes a specific recommendation for each domain with justification. E.g. "For technical content: Qwen2.5-72B-Instruct due to strong code corpus and structured output adherence. For creative: Llama-3.1-70B-Instruct due to broader literary training." Award the mark for a justified recommendation, not for picking any specific model.`
-  },
-  b1: {
-    marks: 7,
-    rubric: `Part B1 — Quantization and speculative decoding (7 marks):
-
-Quantization explanation (3 marks): INT8 — 2x memory reduction vs FP16, supported by bitsandbytes/GPTQ/vLLM, minimal quality loss on most tasks, good production default. INT4 — 4x memory reduction (e.g. 70B model fits in ~35GB with GPTQ/GGUF), quality degradation on complex reasoning, suitable for prototyping or edge. FP8 — hardware native on H100/H200/B100, near FP16 quality, supported in vLLM 0.4+, best choice on modern infrastructure. Award 1 mark per level for correctness of mechanism + tradeoff + practical applicability.
-
-Speculative decoding mechanism (2 marks): Draft model (small, fast) generates candidate tokens; target model verifies multiple tokens in a single forward pass in parallel. Achieves 2–3x latency reduction, especially effective when output is predictable (low temperature, technical/structured content). Student should name that it's the target model that verifies, not re-generates — this is the key insight. Should mention that draft and target must share the same vocabulary.
-
-Application reasoning (2 marks): Student should argue why speculative decoding is especially valuable HERE — technical documentation is predictable, structured, often templated → draft model acceptance rate is high → speedup is maximized. Also note that at 128k context, per-token latency is the bottleneck, making speculative decoding high-value. Award marks for connecting the mechanism to this specific scenario.`
-  },
-  b2: {
-    marks: 8,
-    rubric: `Part B2 — Dense vs MoE architecture tradeoff (8 marks):
-
-MoE mechanism (2 marks): MoE uses a router that selects k of N expert FFN layers for each token. E.g. Mixtral 8x7B: 8 experts, top-2 routing → 47B total params, ~13B activated per token. Lower per-token compute cost, but ALL expert weights must reside in memory (GPU VRAM or CPU RAM with offloading). Student must explain both total vs active parameters correctly.
-
-Memory comparison for this use case (2 marks): Mixtral 8x7B needs ~90GB VRAM for FP16 (all experts loaded). Llama 3 70B needs ~140GB FP16 but ~35GB at INT4. At 128k context, KV-cache adds significantly. A 128k sequence with 70B model at INT8 needs ~15–20GB additional KV-cache. Student should articulate that MoE has higher memory floor that gets worse with long context.
-
-Deployment complexity (2 marks): Dense model: simpler sharding, well-supported by vLLM/TGI/Ollama, quantization widely tested. MoE: expert routing requires care in tensor parallelism, expert load balancing is operational concern, less uniform quantization support. For a production system needing reliable SLA, dense is lower ops risk.
-
-Recommendation quality (2 marks): Student makes a reasoned recommendation tied to the scenario constraints. E.g. "For this scenario — 128k technical content, production, single team — I'd choose Llama-3.1-70B INT8 on 2×A100 80GB for predictable memory, GQA efficiency, strong instruction following, and mature vLLM support. I'd evaluate Qwen2.5-72B as an alternative given its strong code/doc performance. MoE would be worth testing only if we have >4×A100 available and can absorb the ops overhead."  Award marks for reasoning quality, not for the specific model chosen.`
-  },
-  bx: {
-    marks: 5,
-    rubric: `Bonus — Open-source on-prem vs hosted frontier API (5 marks):
-
-Volume economics / break-even (1 mark): Student should articulate that API cost is per-token (roughly $0.01–$0.05 per 1K output tokens for frontier models), while on-prem is a capital expenditure (GPU cost) + operational cost amortized over usage. At low volume (<1M tokens/day), API cheaper. At scale, on-prem wins. Ideally student sketches a break-even formula or example numbers.
-
-Data privacy and compliance (1 mark): On-prem required if generating docs containing proprietary code, trade secrets, or regulated data. API sends data to a third party. For a fast-growing company, this is a real risk to quantify. Multi-tenant API (public) vs VPC/private endpoint is a middle ground worth mentioning.
-
-Quality ceiling (1 mark): Frontier models (GPT-4o, Claude Opus, Gemini Ultra) still lead on complex multi-step reasoning, nuanced instruction following, and SOTA benchmarks. If technical content quality directly impacts user trust or revenue, the quality premium may justify cost. Student should be specific about where the quality gap matters — not just say "frontier is better."
-
-Latency and SLA (1 mark): API latency is variable and subject to provider load. On-prem gives deterministic performance. For batch processing (nightly doc generation), API is fine. For interactive technical assistance, on-prem SLA is more controllable.
-
-Total cost of ownership and final recommendation (1 mark): Student should include ops burden in on-prem TCO: GPU procurement, maintenance, model updates, team expertise in vLLM/TGI. API TCO: just per-token cost + key management. Recommendation should be opinionated and tied to the company's stage, volume, and risk tolerance.`
-  }
-};
-
-const scores = {};
-
-// ── Evaluate via API ──
-async function evalAnswer(id, maxM) {
-  const btn = document.getElementById('eb-' + id);
-  const txt = document.getElementById('ans-' + id).value.trim();
-
-  if (!txt || txt.length < 30) {
-    showFb(id, 'poor', `Answer too short to evaluate — write at least 3–4 sentences first.`, 0, maxM, '');
-    return;
-  }
-
-  btn.disabled = true;
-  btn.innerHTML = '<span class="loading"></span> Evaluating...';
-
-  const r = RUBRICS[id];
-  const prompt = `You are an expert GenAI trainer evaluating an open-book interview answer.
-
-RUBRIC (use this to score):
-${r.rubric}
-
-STUDENT ANSWER:
-${txt}
-
-Score strictly but constructively. Respond in EXACTLY this format:
-SCORE: X/${maxM}
-VERDICT: [Excellent / Good / Partial / Needs improvement]
-FEEDBACK: [2-4 sentences: what they got right, what was missing, specific concepts they should have included]
-HINT: [One actionable learning tip pointing to the gap]`;
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 450,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await res.json();
-    const text = data.content?.[0]?.text || '';
-
-    const sm = text.match(/SCORE:\s*(\d+(?:\.\d+)?)\s*\/\s*(\d+)/);
-    const vm = text.match(/VERDICT:\s*(.+)/);
-    const fm = text.match(/FEEDBACK:\s*([\s\S]+?)(?=HINT:|$)/);
-    const hm = text.match(/HINT:\s*([\s\S]+)/);
-
-    const sc = sm ? parseFloat(sm[1]) : 0;
-    const verdict = vm ? vm[1].trim() : '';
-    const fb = fm ? fm[1].trim() : text;
-    const hint = hm ? hm[1].trim() : '';
-
-    scores[id] = sc;
-    const pct = sc / maxM;
-    const cls = pct >= 0.75 ? 'good' : pct >= 0.5 ? 'partial' : 'poor';
-    const icon = pct >= 0.75 ? '✓' : pct >= 0.5 ? '◑' : '✗';
-
-    showFb(id, cls, fb, sc, maxM, hint, `${icon} ${sc}/${maxM} — ${verdict}`);
-    markDone(id);
-    btn.textContent = 'Re-evaluate';
-    btn.disabled = false;
-
-  } catch(e) {
-    showFb(id, 'partial', 'Auto-evaluation unavailable. Check API connectivity and try again, or self-assess using the rubric in the hint.', null, maxM, '');
-    btn.disabled = false;
-    btn.textContent = 'Try again';
-  }
-}
-
-function showFb(id, cls, body, score, max, hint, title) {
-  const el = document.getElementById('fb-' + id);
-  el.className = 'feedback ' + cls;
-  el.innerHTML = `${title ? `<div class="fb-score">${title}</div>` : ''}${body}${hint ? `<div class="fb-tip">💡 ${hint}</div>` : ''}`;
-  el.style.display = 'block';
-}
-
-// ── Submit all ──
-function submitAll() {
-  clearInterval(timerRef);
-  const name = document.getElementById('sname').value.trim() || 'Candidate';
-
-  const parts = [
-    { id: 'a1', label: 'A1 — Architecture attributes', max: 8 },
-    { id: 'a2', label: 'A2 — Model comparison',        max: 8 },
-    { id: 'a3', label: 'A3 — Technical vs creative',   max: 5 },
-    { id: 'b1', label: 'B1 — Quantization & speculative', max: 7 },
-    { id: 'b2', label: 'B2 — Dense vs MoE',            max: 8 },
-    { id: 'bx', label: 'Bonus — On-prem vs API',       max: 5 },
-  ];
-
-  const coreMax = 8+8+5+7+8; // 36
-  let coreTotal = 0, bonusTotal = 0;
-
-  parts.forEach(p => {
-    const s = scores[p.id] || 0;
-    if (p.id === 'bx') bonusTotal += s; else coreTotal += s;
+// Character count for textareas
+document.querySelectorAll('textarea').forEach(ta => {
+  ta.addEventListener('input', () => {
+    let count = ta.value.trim().split(/\s+/).filter(w => w).length;
+    ta.closest('.answer-area').querySelector('.charcount span').textContent = count;
   });
+});
 
-  const pct = Math.round(coreTotal / coreMax * 100);
-  const grade = pct >= 85 ? 'A' : pct >= 70 ? 'B' : pct >= 55 ? 'C' : 'D';
-  const remark = {
-    A: 'Strong engineering reasoning — production-ready thinking on model selection.',
-    B: 'Good grasp of the tradeoffs. Deepen your MoE / quantization details.',
-    C: 'Foundational understanding present. Revisit context handling and inference efficiency.',
-    D: 'Review Transformer architecture fundamentals and inference engineering concepts.'
-  }[grade];
+// Quiz option selection
+document.querySelectorAll('.quiz-option input').forEach(radio => {
+  radio.addEventListener('change', () => {
+    radio.closest('.quiz-option').classList.add('selected');
+    // Remove selection from siblings
+    radio.closest('.quiz-option').parentElement.querySelectorAll('.quiz-option').forEach(opt => {
+      if (opt !== radio.closest('.quiz-option')) {
+        opt.classList.remove('selected');
+      }
+    });
+  });
+});
 
-  document.getElementById('results').style.display = 'block';
-  document.getElementById('results').innerHTML = `
-    <h2 style="font-size:16px;font-weight:500;margin-bottom:16px">Result — ${name}</h2>
-    <div class="grade-row">
-      <div class="grade-circle g${grade}">${grade}<small>grade</small></div>
-      <div>
-        <div style="font-size:30px;font-weight:500;line-height:1.1">${coreTotal}<span style="font-size:16px;color:#888882">/${coreMax}</span>
-        ${bonusTotal > 0 ? `<span style="font-size:14px;color:#4a9a6a;margin-left:8px">+${bonusTotal} bonus</span>` : ''}
-        </div>
-        <div style="font-size:13px;color:#888882;margin-top:3px">${pct}% core · ${remark}</div>
-      </div>
-    </div>
-    <div class="breakdown-grid">
-      ${parts.map(p => `
-        <div class="breakdown-item">
-          <div class="bi-label">${p.label}</div>
-          <div class="bi-score">${scores[p.id] !== undefined ? scores[p.id] : '—'}/${p.max}</div>
-        </div>`).join('')}
-    </div>
-    <div class="debrief">
-      <strong>Trainer debrief:</strong> The strongest answers to this question don't just list model names — they show a mental model for evaluating ANY new model family against a production constraint. The key reasoning chain is: <em>use-case constraints → architecture requirements → candidate models → inference tradeoffs → deployment decision</em>. If you scored lower on B2, that's the most interview-differentiating part — MoE economics at long context is a real production gotcha. Review your lowest part and make sure you can explain the mechanism, not just the conclusion.
-    </div>
-  `;
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Progress tracking
+function updateProgress() {
+  let total = document.querySelectorAll('.q-banner').length;
+  let answered = 0;
+  document.querySelectorAll('textarea').forEach(ta => {
+    if (ta.value.trim().length > 10) answered++;
+  });
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    if (radio.checked) answered++;
+  });
+  let percent = (answered / total) * 100;
+  document.querySelector('.progress-fill').style.width = percent + '%';
+}
+
+document.addEventListener('input', updateProgress);
+document.addEventListener('change', updateProgress);
+
+// Submit
+function submitAssessment() {
+  let confirmed = confirm('Are you sure? Your assessment will be submitted and cannot be edited.');
+  if (confirmed) {
+    alert('✅ Assessment submitted successfully!\n\nYour responses have been recorded.\n\nExpected feedback within 24 hours.');
+    // In production, send data to backend
+  }
 }
 </script>
+
 </body>
 </html>
