@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Open Book Assessment - Gen AI & Cloud/title>
+<title>Open Book Assessment - Gen AI & Cloud</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,7 +15,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── Top Bar ── */
 .topbar {
   background: #1a1a18;
   color: #f5f5f3;
@@ -29,8 +28,8 @@ body {
   top: 0;
   z-index: 100;
 }
-.topbar-left h1 { font-size: 16px; font-weight: 500; letter-spacing: -0.2px; }
-.topbar-left p  { font-size: 12px; color: #888882; margin-top: 2px; }
+.topbar-left h1 { font-size: 16px; font-weight: 500; }
+.topbar-left p { font-size: 12px; color: #888882; margin-top: 2px; }
 .topbar-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .chip {
   font-size: 11px;
@@ -38,22 +37,16 @@ body {
   border-radius: 20px;
   border: 0.5px solid #3a3a38;
   color: #aaa;
-  white-space: nowrap;
 }
-.chip.green  { border-color: #3a7a5a; color: #6ac89a; }
-.chip.blue   { border-color: #3a5a8a; color: #7aaae0; }
-.chip.red    { border-color: #7a3a3a; color: #ca6a6a; }
 #timer {
   font-size: 18px;
   font-weight: 500;
-  font-variant-numeric: tabular-nums;
   color: #f5f5f3;
   letter-spacing: 1px;
 }
 #timer.warn { color: #e87a4a; }
 #timer.critical { color: #e84a4a; }
 
-/* ── Progress ── */
 .progress-wrap {
   height: 3px;
   background: #e8e8e2;
@@ -64,18 +57,15 @@ body {
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #4a7fc0, #7a5fc0);
-  transition: width 0.5s ease;
   width: 0%;
 }
 
-/* ── Layout ── */
 .wrap {
   max-width: 880px;
   margin: 0 auto;
   padding: 28px 20px 80px;
 }
 
-/* ── User Info Card ── */
 .user-info-card {
   background: #e3f2fd;
   border: 0.5px solid #4a7fc0;
@@ -83,9 +73,7 @@ body {
   padding: 16px;
   margin-bottom: 24px;
   font-size: 13px;
-  color: #1a4a8a;
 }
-.user-info-card strong { color: #1a3a7a; }
 
 .user-info {
   background: #fafaf8;
@@ -97,16 +85,8 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-.user-info .field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.user-info label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #1a1a18;
-}
+.user-info .field { display: flex; flex-direction: column; gap: 4px; }
+.user-info label { font-size: 12px; font-weight: 600; }
 .user-info input {
   padding: 8px 12px;
   border: 0.5px solid #d8d8d0;
@@ -114,12 +94,8 @@ body {
   font-size: 13px;
   outline: none;
 }
-.user-info input:focus {
-  border-color: #4a7fc0;
-  background: #fff;
-}
+.user-info input:focus { border-color: #4a7fc0; background: #fff; }
 
-/* ── Section Header ── */
 .sec-head {
   display: flex;
   align-items: center;
@@ -128,22 +104,10 @@ body {
   padding-bottom: 16px;
   border-bottom: 2px solid #d0d0c8;
 }
-.sec-head .icon {
-  font-size: 28px;
-}
-.sec-head h1 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1a1a18;
-}
-.sec-head .meta {
-  margin-left: auto;
-  font-size: 12px;
-  color: #888882;
-  text-align: right;
-}
+.sec-head .icon { font-size: 28px; }
+.sec-head h1 { font-size: 24px; font-weight: 600; }
+.sec-head .meta { margin-left: auto; font-size: 12px; color: #888882; }
 
-/* ── Question Banner ── */
 .q-banner {
   background: #fff;
   border: 0.5px solid #e0e0d8;
@@ -152,23 +116,9 @@ body {
   padding: 20px 24px;
   margin-bottom: 28px;
 }
-.q-banner.quiz {
-  border-left-color: #7a5fc0;
-}
-.q-banner.aws {
-  border-left-color: #ff9900;
-}
-.q-banner h2 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #1a1a18;
-}
-.q-banner p {
-  font-size: 13.5px;
-  color: #444440;
-  line-height: 1.7;
-}
+.q-banner.quiz { border-left-color: #7a5fc0; }
+.q-banner h2 { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.q-banner p { font-size: 13.5px; color: #444440; }
 .q-banner .scenario {
   margin-top: 12px;
   background: #f8f8f4;
@@ -178,7 +128,6 @@ body {
   font-size: 13px;
 }
 
-/* ── Question number ── */
 .q-num {
   display: inline-block;
   background: #4a7fc0;
@@ -191,19 +140,8 @@ body {
 }
 .q-num.quiz { background: #7a5fc0; }
 
-/* ── Hint Box ── */
-.hint-toggle {
-  padding: 12px 20px 0;
-  cursor: pointer;
-  user-select: none;
-}
-.hint-toggle a {
-  color: #4a7fc0;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
-}
-.hint-toggle a:hover { text-decoration: underline; }
+.hint-toggle { padding: 12px 20px 0; cursor: pointer; }
+.hint-toggle a { color: #4a7fc0; text-decoration: none; font-size: 13px; font-weight: 500; }
 .hint-box {
   margin: 12px 20px 0;
   padding: 12px 16px;
@@ -216,18 +154,8 @@ body {
 }
 .hint-box.open { display: block; }
 .hint-box li { margin-bottom: 4px; }
-.hint-box code {
-  background: #fff3a0;
-  padding: 1px 5px;
-  border-radius: 3px;
-  font-size: 11.5px;
-  font-family: 'SF Mono', monospace;
-}
 
-/* ── Textarea ── */
-.answer-area {
-  padding: 12px 20px 0;
-}
+.answer-area { padding: 12px 20px 0; }
 .answer-area textarea {
   width: 100%;
   padding: 10px 12px;
@@ -237,22 +165,14 @@ body {
   background: #fafaf8;
   border: 0.5px solid #d8d8d0;
   border-radius: 6px;
-  resize: vertical;
   outline: none;
-  transition: border-color 0.15s;
   line-height: 1.65;
   min-height: 110px;
 }
 .answer-area textarea:focus { border-color: #4a7fc0; background: #fff; }
 .charcount { font-size: 11px; color: #b0b0a8; text-align: right; margin-top: 4px; }
 
-/* ── Quiz Options ── */
-.quiz-options {
-  padding: 12px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.quiz-options { padding: 12px 20px; display: flex; flex-direction: column; gap: 10px; }
 .quiz-option {
   padding: 12px 16px;
   background: #fafaf8;
@@ -265,16 +185,9 @@ body {
   gap: 10px;
   font-size: 13.5px;
 }
-.quiz-option:hover {
-  background: #f5f5f3;
-  border-color: #4a7fc0;
-}
-.quiz-option.selected {
-  background: #e3f2fd;
-  border-color: #4a7fc0;
-}
+.quiz-option:hover { background: #f5f5f3; border-color: #4a7fc0; }
+.quiz-option.selected { background: #e3f2fd; border-color: #4a7fc0; }
 
-/* ── Buttons ── */
 button {
   font-family: inherit;
   font-size: 13px;
@@ -283,13 +196,10 @@ button {
   padding: 7px 16px;
   cursor: pointer;
   background: #fafaf8;
-  color: #1a1a18;
   transition: all 0.12s;
   min-height: 38px;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
 }
-button:hover { background: #f0f0ea; border-color: #b8b8b0; }
+button:hover { background: #f0f0ea; }
 button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .submit-btn {
@@ -302,57 +212,7 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 }
 .submit-btn:hover { background: #3a3a38; }
 
-/* ── Results ── */
-#results {
-  display: none;
-  background: #fff;
-  border: 0.5px solid #e0e0d8;
-  border-radius: 8px;
-  padding: 28px 24px;
-  margin: 28px 0;
-}
-
-.grade-row {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-  margin-bottom: 28px;
-}
-
-.grade-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  font-weight: 700;
-  color: #fff;
-}
-.grade-circle.gA { background: #1a5a3a; }
-.grade-circle.gB { background: #1a4a8a; }
-.grade-circle.gC { background: #8a5a1a; }
-.grade-circle.gD { background: #8a1a1a; }
-
-.grade-circle small {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  opacity: 0.9;
-}
-
-.debrief {
-  background: #f0f0ea;
-  border: 0.5px solid #d8d8d0;
-  border-radius: 6px;
-  padding: 16px;
-  font-size: 13px;
-  line-height: 1.7;
-  margin-top: 20px;
-}
-
+#results { display: none; background: #fff; border: 0.5px solid #e0e0d8; border-radius: 8px; padding: 28px 24px; margin: 28px 0; }
 .submit-status {
   margin-top: 16px;
   padding: 12px 16px;
@@ -360,59 +220,35 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   font-size: 12.5px;
   border: 0.5px solid;
 }
-.submit-status.loading {
-  background: #e3f2fd;
-  border-color: #4a7fc0;
-  color: #1a4a8a;
-}
-.submit-status.success {
-  background: #eef8f2;
-  border-color: #4a9a6a;
-  color: #1a5a3a;
-}
-.submit-status.error {
-  background: #fef8ea;
-  border-color: #e0c060;
-  color: #7a5a00;
-}
+.submit-status.loading { background: #e3f2fd; border-color: #4a7fc0; color: #1a4a8a; }
+.submit-status.success { background: #eef8f2; border-color: #4a9a6a; color: #1a5a3a; }
+.submit-status.error { background: #fef8ea; border-color: #e0c060; color: #7a5a00; }
 
-/* ── Page Break ── */
-.page-break {
-  page-break-after: always;
-  border-top: 3px solid #4a7fc0;
-  margin: 60px 0;
-  padding-top: 60px;
-}
+.page-break { page-break-after: always; border-top: 3px solid #4a7fc0; margin: 60px 0; padding-top: 60px; }
 
-@media print {
-  .topbar, .progress-wrap, button { display: none; }
-}
+@media print { .topbar, .progress-wrap, button { display: none; } }
 </style>
 </head>
 <body>
 
-<!-- Top Bar -->
 <div class="topbar">
   <div class="topbar-left">
     <h1>🧠 Gen AI & Cloud - Open Book Assessment</h1>
     <p>LLM Transformers · Prompt Engineering · LangChain · AWS (EC2, IAM)</p>
   </div>
   <div class="topbar-right">
-    <span class="chip blue">Two Sections</span>
-    <span class="chip green">55 + 15 min</span>
+    <span class="chip" style="border-color: #3a5a8a; color: #7aaae0;">Two Sections</span>
+    <span class="chip" style="border-color: #3a7a5a; color: #6ac89a;">55 + 15 min</span>
     <div id="timer">00:00</div>
   </div>
 </div>
-<div class="progress-wrap">
-  <div class="progress-fill"></div>
-</div>
+<div class="progress-wrap"><div class="progress-fill"></div></div>
 
-<!-- Main Content -->
 <div class="wrap">
 
-<!-- ── User Info ── -->
+<!-- User Info -->
 <div class="user-info-card">
-  ℹ️ <strong>Required:</strong> Enter your name and email below. Results will be saved to trainer dashboard when you submit.
+  ℹ️ <strong>Required:</strong> Enter your name and email. Results will be saved when you submit.
 </div>
 
 <div class="user-info">
@@ -426,10 +262,7 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 1: LONG QUESTIONS (55 MINUTES) -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-
+<!-- SECTION 1 -->
 <div class="sec-head">
   <div class="icon">📝</div>
   <div>
@@ -438,163 +271,62 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   </div>
 </div>
 
-<!-- Q1: Transformer Architecture -->
 <div class="q-banner">
   <span class="q-num">Q1</span>
   <h2>Transformer Architecture for LLMs</h2>
-  <p><strong>Scenario:</strong> Deploying a decoder-only Transformer (Llama 3, Mistral) for 64k–128k token context windows.</p>
-  <div class="scenario">
-    <strong>Task:</strong> Compare GQA vs MQA vs MHA. Why is GQA dominant for long contexts? Trade-offs: KV-cache memory, inference latency, output quality?
-  </div>
+  <div class="scenario">Compare GQA vs MQA vs MHA. Why is GQA dominant for long contexts? Trade-offs: KV-cache memory, inference latency, output quality?</div>
 </div>
-
-<div class="hint-toggle">
-  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
-</div>
-<div class="hint-box">
-  <strong>Key points:</strong>
-  <ul>
-    <li><strong>KV-cache:</strong> Grows O(seq_len). At 128k tokens, dominates memory.</li>
-    <li><strong>GQA:</strong> Fewer KV heads, ~2× memory reduction vs MHA, minimal quality loss.</li>
-    <li><strong>MQA:</strong> Single KV head, aggressive, often hurts quality.</li>
-    <li><strong>FlashAttention-2/3:</strong> GQA benefits more from memory efficiency.</li>
-  </ul>
-</div>
-
-<div class="answer-area">
-  <textarea id="ans-q1" placeholder="Your answer (300+ words)..."></textarea>
-  <div class="charcount"><span>0</span> / 300 words</div>
-</div>
+<div class="hint-toggle"><a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a></div>
+<div class="hint-box"><ul><li>KV-cache grows O(seq_len), dominates at 128k tokens</li><li>GQA: 2× memory reduction vs MHA, minimal quality loss</li><li>MQA: More aggressive, often hurts quality</li></ul></div>
+<div class="answer-area"><textarea id="ans-q1" placeholder="Your answer (300+ words)..."></textarea><div class="charcount"><span>0</span> / 300 words</div></div>
 
 ---
 
-<!-- Q2: Prompt Engineering (CoT) -->
 <div class="q-banner">
   <span class="q-num">Q2</span>
-  <h2>Prompt Engineering - Chain-of-Thought & Variants</h2>
-  <p><strong>Scenario:</strong> Building an AI-powered code review assistant for architectural decisions.</p>
-  <div class="scenario">
-    <strong>Task:</strong> Compare CoT, Tree-of-Thought (ToT), Self-Consistency (SC). When use each? Latency and cost implications for production?
-  </div>
+  <h2>Prompt Engineering - CoT Variants</h2>
+  <div class="scenario">Compare CoT, Tree-of-Thought (ToT), Self-Consistency (SC). When use each? Latency and cost implications?</div>
 </div>
-
-<div class="hint-toggle">
-  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
-</div>
-<div class="hint-box">
-  <strong>Key points:</strong>
-  <ul>
-    <li><strong>Standard CoT:</strong> Single reasoning path, 1× latency.</li>
-    <li><strong>Tree-of-Thought:</strong> Multiple branches, 3–5× latency, best for complex decisions.</li>
-    <li><strong>Self-Consistency:</strong> Multiple runs + voting, reduces hallucination.</li>
-  </ul>
-</div>
-
-<div class="answer-area">
-  <textarea id="ans-q2" placeholder="Your answer (300+ words)..."></textarea>
-  <div class="charcount"><span>0</span> / 300 words</div>
-</div>
+<div class="hint-toggle"><a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a></div>
+<div class="hint-box"><ul><li>CoT: Single path, 1× latency</li><li>ToT: Multiple branches, 3-5× latency</li><li>SC: Multiple runs + voting, reduces hallucination</li></ul></div>
+<div class="answer-area"><textarea id="ans-q2" placeholder="Your answer (300+ words)..."></textarea><div class="charcount"><span>0</span> / 300 words</div></div>
 
 ---
 
-<!-- Q3: Prompt Engineering (Structured Output) -->
 <div class="q-banner">
   <span class="q-num">Q3</span>
-  <h2>Prompt Engineering - Structured Output & Few-Shot</h2>
-  <p><strong>Scenario:</strong> Customer support AI extracting entities from support tickets → structured JSON.</p>
-  <div class="scenario">
-    <strong>Task:</strong> Compare zero-shot, few-shot, dynamic few-shot prompting. How prevent hallucinations? Enforce schema compliance? Cost vs accuracy?
-  </div>
+  <h2>Structured Output & Few-Shot Prompting</h2>
+  <div class="scenario">Compare zero-shot, few-shot, dynamic few-shot. How prevent hallucinations? Enforce schema compliance? Cost vs accuracy?</div>
 </div>
-
-<div class="hint-toggle">
-  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
-</div>
-<div class="hint-box">
-  <strong>Key points:</strong>
-  <ul>
-    <li><strong>Zero-shot:</strong> Pure schema, error-prone.</li>
-    <li><strong>Few-shot:</strong> 2–3 examples, ~500–1000 extra tokens, much better consistency.</li>
-    <li><strong>Dynamic few-shot:</strong> Select similar examples, higher accuracy but adds latency.</li>
-    <li><strong>Schema enforcement:</strong> GBNF grammar (Llama), JSON mode (OpenAI).</li>
-  </ul>
-</div>
-
-<div class="answer-area">
-  <textarea id="ans-q3" placeholder="Your answer (300+ words)..."></textarea>
-  <div class="charcount"><span>0</span> / 300 words</div>
-</div>
+<div class="hint-toggle"><a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a></div>
+<div class="hint-box"><ul><li>Zero-shot: Pure schema, error-prone</li><li>Few-shot: 2-3 examples, ~500-1000 tokens, better consistency</li><li>Dynamic: Select similar examples, higher accuracy but more latency</li><li>Schema enforcement: GBNF grammar (Llama), JSON mode (OpenAI)</li></ul></div>
+<div class="answer-area"><textarea id="ans-q3" placeholder="Your answer (300+ words)..."></textarea><div class="charcount"><span>0</span> / 300 words</div></div>
 
 ---
 
-<!-- Q4: LangChain -->
 <div class="q-banner">
   <span class="q-num">Q4</span>
-  <h2>LangChain: Document Loaders, Text Splitters & Runnables</h2>
-  <p><strong>Scenario:</strong> Building RAG system processing PDFs, HTML, CSVs for vector embeddings.</p>
-  <div class="scenario">
-    <strong>Task:</strong> Explain Document Loader + Text Splitter pipeline. Compare recursive vs sliding-window chunking. How does chunk size/overlap affect retrieval? Show Runnable pattern code.
-  </div>
+  <h2>LangChain: Document Loaders & Text Splitters</h2>
+  <div class="scenario">Explain Document Loader + Text Splitter pipeline. Compare recursive vs sliding-window chunking. How does chunk size/overlap affect retrieval?</div>
 </div>
-
-<div class="hint-toggle">
-  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
-</div>
-<div class="hint-box">
-  <strong>Key points:</strong>
-  <ul>
-    <li><strong>Document Loaders:</strong> Abstract format differences (PDF, HTML, web).</li>
-    <li><strong>Recursive:</strong> Respects hierarchy [\n\n, \n, ., " "], preserves structure.</li>
-    <li><strong>Sliding window:</strong> Fixed size + overlap, simpler, good for dense text.</li>
-    <li><strong>Chunk size:</strong> 300–800 tokens optimal (too small = fragmented, too large = bloat).</li>
-  </ul>
-</div>
-
-<div class="answer-area">
-  <textarea id="ans-q4" placeholder="Your answer (300+ words)..."></textarea>
-  <div class="charcount"><span>0</span> / 300 words</div>
-</div>
+<div class="hint-toggle"><a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a></div>
+<div class="hint-box"><ul><li>Loaders: Abstract format differences</li><li>Recursive: Respects hierarchy, preserves structure</li><li>Sliding: Fixed size + overlap, simpler</li><li>Chunk size: 300-800 tokens optimal</li></ul></div>
+<div class="answer-area"><textarea id="ans-q4" placeholder="Your answer (300+ words)..."></textarea><div class="charcount"><span>0</span> / 300 words</div></div>
 
 ---
 
-<!-- Q5: AWS EC2 & IAM -->
 <div class="q-banner">
   <span class="q-num">Q5</span>
   <h2>AWS EC2 & IAM for LLM Deployment</h2>
-  <p><strong>Scenario:</strong> Deploying Llama 70B (4-bit) on AWS EC2. Needs S3 access, SageMaker calls, CloudWatch logging.</p>
-  <div class="scenario">
-    <strong>Task:</strong> Design EC2 setup (instance type, storage). Define least-privilege IAM role (S3, SageMaker, CloudWatch). How isolate with Security Groups + VPC? Security vs convenience trade-offs?
-  </div>
+  <div class="scenario">Design EC2 setup (instance, storage). Define least-privilege IAM role. Isolate with Security Groups + VPC. Trade-offs?</div>
 </div>
-
-<div class="hint-toggle">
-  <a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a>
-</div>
-<div class="hint-box">
-  <strong>Key points:</strong>
-  <ul>
-    <li><strong>Instance type:</strong> GPU compute (g5, p4), need 80GB+ memory for 70B model.</li>
-    <li><strong>Storage:</strong> EBS gp3 for models, NVMe instance store for cache (faster but ephemeral).</li>
-    <li><strong>IAM:</strong> Specific S3 bucket ARN, SageMaker endpoint ARN, CloudWatch logs (no wildcards).</li>
-    <li><strong>Security Group:</strong> Inbound SSH (restricted), API 8000 (app subnet only), egress HTTPS 443.</li>
-  </ul>
-</div>
-
-<div class="answer-area">
-  <textarea id="ans-q5" placeholder="Your answer (300+ words)..."></textarea>
-  <div class="charcount"><span>0</span> / 300 words</div>
-</div>
-
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- PAGE BREAK -->
-<!-- ════════════════════════════════════════════════════════════════ -->
+<div class="hint-toggle"><a href="javascript:void(0)" onclick="toggleHint(this)">💡 Show Hint</a></div>
+<div class="hint-box"><ul><li>Instance: g5/p4 GPUs, 80GB+ memory</li><li>Storage: EBS for models, NVMe for cache</li><li>IAM: Specific ARNs (no wildcards)</li><li>Security: Inbound SSH (restricted), API 8000, egress 443</li></ul></div>
+<div class="answer-area"><textarea id="ans-q5" placeholder="Your answer (300+ words)..."></textarea><div class="charcount"><span>0</span> / 300 words</div></div>
 
 <div class="page-break"></div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- SECTION 2: QUIZ (15 MINUTES) -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-
+<!-- SECTION 2 -->
 <div class="sec-head">
   <div class="icon">🎯</div>
   <div>
@@ -610,62 +342,195 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
   <p>Which loader handles password-protected PDFs with mixed text + scanned pages?</p>
 </div>
 <div class="quiz-options">
-  <label class="quiz-option">
-    <input type="radio" name="quiz1" value="b">
-    <span>PDFPlumberLoader with Tesseract OCR for scanned pages</span>
-  </label>
-  <label class="quiz-option">
-    <input type="radio" name="quiz1" value="a">
-    <span>PyPDFLoader (handles all types natively)</span>
-  </label>
-  <label class="quiz-option">
-    <input type="radio" name="quiz1" value="c">
-    <span>PDFMinerLoader (deprecated)</span>
-  </label>
-  <label class="quiz-option">
-    <input type="radio" name="quiz1" value="d">
-    <span>WebBaseLoader (URLs only)</span>
-  </label>
+  <label class="quiz-option"><input type="radio" name="quiz1" value="b"><span>PDFPlumberLoader with Tesseract OCR</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz1" value="a"><span>PyPDFLoader (all types)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz1" value="c"><span>PDFMinerLoader (deprecated)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz1" value="d"><span>WebBaseLoader (URLs only)</span></label>
+</div>
+
+<!-- LangChain Q2 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q2</span>
+  <h2>RecursiveCharacterTextSplitter</h2>
+  <p>Primary benefit over fixed chunking?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz2" value="b"><span>Preserves logical structure (paragraphs, sentences)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz2" value="a"><span>Faster processing</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz2" value="c"><span>Auto-detects chunk size</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz2" value="d"><span>Removes duplicates</span></label>
+</div>
+
+<!-- LangChain Q3 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q3</span>
+  <h2>RunnablePassthrough</h2>
+  <p>In pipeline: retriever | RunnablePassthrough() | prompt, what does it do?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz3" value="b"><span>Passes input unchanged, enables parallel composition</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz3" value="a"><span>Skips prompt step</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz3" value="c"><span>Validates input format</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz3" value="d"><span>Caches results</span></label>
+</div>
+
+<!-- LangChain Q4 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q4</span>
+  <h2>ConversationBufferMemory</h2>
+  <p>Main limitation in production chatbots?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz4" value="b"><span>All history retained indefinitely, unbounded context length</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz4" value="a"><span>No token counting</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz4" value="c"><span>Only OpenAI models</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz4" value="d"><span>Stores in env variables</span></label>
+</div>
+
+<!-- LangChain Q5 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q5</span>
+  <h2>ConversationSummaryMemory</h2>
+  <p>True/False: Uses LLM to condense history into summary?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz5" value="a"><span>True</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz5" value="b"><span>False</span></label>
+</div>
+
+<!-- LangChain Q6 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q6</span>
+  <h2>Runnable.stream() vs Runnable.invoke()</h2>
+  <p>When use stream() instead of invoke()?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz6" value="a"><span>For real-time token-by-token output (progressive rendering)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz6" value="b"><span>Only free models</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz6" value="c"><span>Stream doesn't exist</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz6" value="d"><span>Batch requests</span></label>
+</div>
+
+<!-- LangChain Q7 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q7</span>
+  <h2>Text Splitter Overlap</h2>
+  <p>For chunk_size=500, overlap=100, what's the purpose?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz7" value="b"><span>Preserve context at boundaries so meaning isn't lost</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz7" value="a"><span>Reduce total chunks</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz7" value="c"><span>Remove duplicates</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz7" value="d"><span>Speed up vector search</span></label>
+</div>
+
+<!-- LangChain Q8 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q8</span>
+  <h2>EntityMemory</h2>
+  <p>Used for:</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz8" value="a"><span>Extracting and maintaining key entities (names, places, dates)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz8" value="b"><span>Encrypting data</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz8" value="c"><span>Deleting old messages</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz8" value="d"><span>Connecting to databases</span></label>
+</div>
+
+<!-- LangChain Q9 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q9</span>
+  <h2>DocumentLoader Metadata</h2>
+  <p>Advantage of preserving metadata (source, page, timestamp)?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz9" value="b"><span>Enables traceability, filtering, improves context quality</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz9" value="a"><span>No advantage, extra clutter</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz9" value="c"><span>Removes duplicates</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz9" value="d"><span>Speeds up embeddings</span></label>
+</div>
+
+<!-- LangChain Q10 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q10</span>
+  <h2>Runnable Composition (Pipe Operator)</h2>
+  <p>In (runnable1 | runnable2).invoke(input), the pipe means:</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz10" value="b"><span>Sequential: output of runnable1 → input to runnable2</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz10" value="a"><span>Parallel execution</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz10" value="c"><span>Conditional branching</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz10" value="d"><span>Loop until convergence</span></label>
 </div>
 
 ---
 
-<!-- Q2 -->
+<!-- AWS Q11 -->
 <div class="q-banner quiz">
-  <span class="q-num quiz">Q2</span>
-  <h2>RecursiveCharacterTextSplitter Advantage</h2>
-  <p>Primary benefit over fixed chunking?</p>
+  <span class="q-num quiz">Q11</span>
+  <h2>AWS EC2 for LLM (70B, 4-bit, ~35GB)</h2>
+  <p>Most cost-effective instance family?</p>
 </div>
 <div class="quiz-options">
-  <label class="quiz-option">
-    <input type="radio" name="quiz2" value="b">
-    <span>Preserves logical structure (paragraphs, sentences, words)</span>
-  </label>
-  <label class="quiz-option">
-    <input type="radio" name="quiz2" value="a">
-    <span>Faster processing time</span>
-  </label>
-  <label class="quiz-option">
-    <input type="radio" name="quiz2" value="c">
-    <span>Automatically detects optimal chunk size</span>
-  </label>
-  <label class="quiz-option">
-    <input type="radio" name="quiz2" value="d">
-    <span>Removes duplicate content</span>
-  </label>
+  <label class="quiz-option"><input type="radio" name="quiz11" value="c"><span>g5 (NVIDIA A10G, multiple GPU variants)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz11" value="b"><span>g4dn (NVIDIA T4, 16GB per GPU)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz11" value="a"><span>t3 (burstable CPU, no GPU)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz11" value="d"><span>i3 (high I/O, no GPU)</span></label>
 </div>
 
-<!-- Q3-Q15: Abbreviated for demo -->
-<div style="background:#f0f0ea;padding:16px;border-radius:6px;margin:20px 0;font-size:13px;line-height:1.6;">
-  <strong>Questions Q3-Q15:</strong> Complete quiz includes 13 more questions covering LangChain (Runnable, Memory variants, Stream vs Invoke, Text splitter overlap, Entity extraction, Metadata) and AWS (EC2 instances, IAM least privilege, Security Groups, IAM policy structure, EBS vs instance store).
-  <br><br>
-  <em>This demo shows abbreviated quiz. Full version has all 15 questions.</em>
+<!-- AWS Q12 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q12</span>
+  <h2>IAM Least Privilege</h2>
+  <p>True/False: EC2 should have full S3 access (*:*) for simplicity?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz12" value="b"><span>False (violates least privilege, specific ARNs reduce blast radius)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz12" value="a"><span>True (simplicity more important)</span></label>
 </div>
 
-<!-- Results Section -->
+<!-- AWS Q13 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q13</span>
+  <h2>Security Groups vs NACLs</h2>
+  <p>Accept inbound port 8000 from 10.0.1.0/24 only. Most direct control?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz13" value="a"><span>Security Group: Type=Custom TCP, Port=8000, Source=10.0.1.0/24</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz13" value="b"><span>NACL only (Security Groups deprecated)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz13" value="c"><span>Open to 0.0.0.0/0, use OS firewall</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz13" value="d"><span>Restrict at app layer only</span></label>
+</div>
+
+<!-- AWS Q14 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q14</span>
+  <h2>IAM Policy Structure</h2>
+  <p>Read S3 "ml-models" bucket, write CloudWatch logs. Correct?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz14" value="b"><span>Effect: Allow, Action: ["s3:GetObject", "logs:CreateLogStream", "logs:PutLogEvents"], Resource: [ARNs]</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz14" value="a"><span>Effect: Deny, Action: ["s3:*", "logs:*"]</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz14" value="c"><span>Effect: Allow, Action: "*", Resource: "*"</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz14" value="d"><span>No policy needed</span></label>
+</div>
+
+<!-- AWS Q15 -->
+<div class="q-banner quiz">
+  <span class="q-num quiz">Q15</span>
+  <h2>AWS Storage: EBS vs Instance Store</h2>
+  <p>For persistent model weights + temporary inference cache?</p>
+</div>
+<div class="quiz-options">
+  <label class="quiz-option"><input type="radio" name="quiz15" value="c"><span>EBS gp3 for models, local NVMe for inference cache</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz15" value="a"><span>EBS for both (persistent)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz15" value="b"><span>Instance Store for both (fastest)</span></label>
+  <label class="quiz-option"><input type="radio" name="quiz15" value="d"><span>Always S3</span></label>
+</div>
+
+<!-- Results -->
 <div id="results"></div>
 
-<!-- Submit Button -->
 <div style="text-align: center; margin-top: 60px; padding-bottom: 60px;">
   <button class="submit-btn" onclick="submitAssessment()">📤 Submit Assessment</button>
   <p style="font-size: 12px; color: #888882; margin-top: 16px;">Results will be saved to trainer dashboard. Feedback within 24 hours.</p>
@@ -673,20 +538,20 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════ -->
-<!-- JAVASCRIPT ═════════════════════════════════════════════════════ -->
-<!-- ════════════════════════════════════════════════════════════════ -->
-
+<!-- JAVASCRIPT -->
 <script>
-// ── CONFIG: Paste your Apps Script Web App URL here ──
-// After deploying WEBHOOK_COLLECTOR.gs, replace the URL below
+// ──────────────────────────────────────────────────────────────
+// ⚠️ WEBHOOK CONFIGURATION - PASTE YOUR APPS SCRIPT URL HERE
+// ──────────────────────────────────────────────────────────────
+// Get this URL from: script.google.com → Deployments → Web app URL
 // Example: https://script.google.com/macros/s/AKfycbwaXJZ4ejPQcs3gyJfORAPEI2WV4UTepNaCw_1lBEGpIgoruPhAc-pSfCBiT2fgs2mw/exec
-const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwaXJZ4ejPQcs3gyJfORAPEI2WV4UTepNaCw_1lBEGpIgoruPhAc-pSfCBiT2fgs2mw/exec';
-// ────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────
+
+const WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
 
 // Timer
 let startTime = Date.now();
-let totalSeconds = 70 * 60; // 70 min
+let totalSeconds = 70 * 60;
 let timerRef = setInterval(() => {
   let elapsed = Math.floor((Date.now() - startTime) / 1000);
   let remaining = totalSeconds - elapsed;
@@ -698,15 +563,9 @@ let timerRef = setInterval(() => {
   } else {
     let mins = Math.floor(remaining / 60);
     let secs = remaining % 60;
-    document.getElementById('timer').textContent = 
-      String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-    
-    if (remaining <= 300) {
-      document.getElementById('timer').classList.add('warn');
-    }
-    if (remaining <= 60) {
-      document.getElementById('timer').classList.add('critical');
-    }
+    document.getElementById('timer').textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+    if (remaining <= 300) document.getElementById('timer').classList.add('warn');
+    if (remaining <= 60) document.getElementById('timer').classList.add('critical');
   }
 }, 1000);
 
@@ -736,29 +595,25 @@ document.querySelectorAll('.quiz-option input').forEach(radio => {
   radio.addEventListener('change', () => {
     radio.closest('.quiz-option').classList.add('selected');
     radio.closest('.quiz-option').parentElement.querySelectorAll('.quiz-option').forEach(opt => {
-      if (opt !== radio.closest('.quiz-option')) {
-        opt.classList.remove('selected');
-      }
+      if (opt !== radio.closest('.quiz-option')) opt.classList.remove('selected');
     });
     updateProgress();
   });
 });
 
-// Progress tracking
+// Progress
 function updateProgress() {
   let total = document.querySelectorAll('.q-banner').length;
   let answered = 0;
   document.querySelectorAll('textarea').forEach(ta => {
     if (ta.value.trim().length > 10) answered++;
   });
-  document.querySelectorAll('input[type="radio"]').forEach(radio => {
-    if (radio.checked) answered++;
-  });
+  document.querySelectorAll('input[type="radio"]:checked').forEach(() => answered++);
   let percent = (answered / total) * 100;
   document.querySelector('.progress-fill').style.width = percent + '%';
 }
 
-// ── SUBMIT FUNCTION ──
+// SUBMIT
 async function submitAssessment() {
   clearInterval(timerRef);
   
@@ -772,7 +627,6 @@ async function submitAssessment() {
   
   const minutesTaken = Math.round((totalSeconds - (Date.now() - startTime) / 1000) / 60);
   
-  // Collect long-form answers
   const allAnswers = {
     q1: document.getElementById('ans-q1')?.value?.trim() || '',
     q2: document.getElementById('ans-q2')?.value?.trim() || '',
@@ -781,17 +635,14 @@ async function submitAssessment() {
     q5: document.getElementById('ans-q5')?.value?.trim() || '',
   };
   
-  // Collect quiz answers
   const quizAnswers = {};
   document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
     quizAnswers[radio.name] = radio.value;
   });
   
-  // Count answered questions
   const longAnswered = Object.values(allAnswers).filter(a => a.length > 10).length;
   const quizAnswered = Object.keys(quizAnswers).length;
   
-  // Build payload (similar to transformer template)
   const payload = {
     name,
     email,
@@ -808,41 +659,22 @@ async function submitAssessment() {
     userAgent: navigator.userAgent
   };
   
-  // Show results immediately (don't wait for network)
   document.getElementById('results').style.display = 'block';
   document.getElementById('results').innerHTML = `
     <h2 style="font-size:18px;font-weight:600;margin-bottom:20px">✅ Assessment Received — ${name}</h2>
-    <div class="grade-row">
-      <div style="flex:1">
-        <div style="font-size:14px;color:#888882;margin-bottom:8px"><strong>Submission Summary</strong></div>
-        <div style="font-size:24px;font-weight:600;color:#1a1a18;line-height:1.3">
-          ${longAnswered} / 5<br><span style="font-size:13px;color:#888882">Long Questions</span>
-        </div>
-        <div style="font-size:24px;font-weight:600;color:#1a1a18;margin-top:12px;line-height:1.3">
-          ${quizAnswered} / 15<br><span style="font-size:13px;color:#888882">Quiz Answers</span>
-        </div>
-      </div>
-      <div style="flex:1;text-align:right;color:#888882;font-size:13px;line-height:1.8">
-        <div><strong>Email:</strong> ${email}</div>
-        <div><strong>Time Used:</strong> ${minutesTaken} minutes</div>
-        <div><strong>Submitted:</strong> ${new Date().toLocaleString()}</div>
-      </div>
+    <div style="display:flex;gap:20px;margin-bottom:20px">
+      <div><div style="font-size:14px;color:#888882;margin-bottom:8px"><strong>Long Questions</strong></div><div style="font-size:28px;font-weight:600">${longAnswered}/5</div></div>
+      <div><div style="font-size:14px;color:#888882;margin-bottom:8px"><strong>Quiz Answers</strong></div><div style="font-size:28px;font-weight:600">${quizAnswered}/15</div></div>
+      <div style="flex:1;text-align:right;color:#888882"><div>Email: ${email}</div><div>Time: ${minutesTaken} min</div></div>
     </div>
-    <div class="debrief">
-      <strong>Next steps:</strong> Your responses have been received. Trainer will review your long-form answers and provide detailed feedback within 24 hours. Focus on how you structured your reasoning, not just the conclusion.
-    </div>
-    <div id="submit-status" class="submit-status loading">
-      ⏳ Saving your responses to trainer dashboard…
-    </div>
+    <div id="submit-status" class="submit-status loading">⏳ Saving your responses to trainer dashboard…</div>
   `;
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
   
-  // POST to webhook
-  if (!WEBHOOK_URL || WEBHOOK_URL.includes('https://script.google.com/macros/s/AKfycbwaXJZ4ejPQcs3gyJfORAPEI2WV4UTepNaCw_1lBEGpIgoruPhAc-pSfCBiT2fgs2mw/exec')) {
+  // FIX: Check for PASTE_YOUR instead of checking if URL includes the old template
+  if (!WEBHOOK_URL || WEBHOOK_URL.includes('PASTE_YOUR')) {
     document.getElementById('submit-status').className = 'submit-status error';
-    document.getElementById('submit-status').innerHTML =
-      '⚠️ Webhook not configured — Results shown above but not saved to Sheet. ' +
-      'Trainer: Paste your Google Apps Script Web App URL into the WEBHOOK_URL constant (line ~1115).';
+    document.getElementById('submit-status').innerHTML = '⚠️ Webhook not configured. Paste your Apps Script Web App URL into WEBHOOK_URL constant (line ~16).';
     return;
   }
   
@@ -855,13 +687,10 @@ async function submitAssessment() {
     });
     
     document.getElementById('submit-status').className = 'submit-status success';
-    document.getElementById('submit-status').innerHTML =
-      '✅ Responses saved to trainer dashboard! You will receive feedback after the assessment period closes.';
+    document.getElementById('submit-status').innerHTML = '✅ Responses saved to trainer dashboard! Feedback within 24 hours.';
   } catch (err) {
     document.getElementById('submit-status').className = 'submit-status error';
-    document.getElementById('submit-status').innerHTML =
-      '⚠️ Could not save to server — check your internet connection. ' +
-      'Screenshot your result above and share with the trainer.';
+    document.getElementById('submit-status').innerHTML = '⚠️ Could not save to server. Check internet and retry, or screenshot your result.';
   }
 }
 </script>
