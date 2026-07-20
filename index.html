@@ -838,7 +838,7 @@ async function submitAssessment() {
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
   
   // POST to webhook
-  if (!WEBHOOK_URL || WEBHOOK_URL.includes('PASTE_YOUR')) {
+  if (!WEBHOOK_URL || WEBHOOK_URL.includes('https://script.google.com/macros/s/AKfycbwaXJZ4ejPQcs3gyJfORAPEI2WV4UTepNaCw_1lBEGpIgoruPhAc-pSfCBiT2fgs2mw/exec')) {
     document.getElementById('submit-status').className = 'submit-status error';
     document.getElementById('submit-status').innerHTML =
       '⚠️ Webhook not configured — Results shown above but not saved to Sheet. ' +
